@@ -42,3 +42,8 @@ jobs:
           echo
           echo git version
           git --version
+
+      - name: Execute Python File
+        run: |
+          echo Executing Python File
+          python HelloWorld.py

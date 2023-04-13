@@ -1,4 +1,4 @@
 import os;
 import sys;
 
-Print("Hello World");
+print("Hello World");

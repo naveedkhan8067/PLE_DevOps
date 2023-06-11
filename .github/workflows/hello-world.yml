@@ -30,12 +30,15 @@ jobs:
 
       - name: npm install
         run: npm install
+        working-directory: ./components/hello-world
 
       - name: npm build
         run: npm run build
+        working-directory: ./components/hello-world
 
       - name: npm pack       
         run: npm pack
+        working-directory: ./components/hello-world
 
       - name: display root
         run: |

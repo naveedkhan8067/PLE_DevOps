@@ -1,0 +1,55 @@
+name: "publish-hello-world-component"
+
+# Run this action on every push to master branch 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - components/hello-world/**
+  # pull_request:
+  #   branches:    
+  #     - main
+
+jobs:
+  release:
+    name: "publish component"
+    runs-on: windows-latest
+    steps:
+      - name: 📚 checkout
+        uses: actions/checkout@v2.1.1
+
+      - name: 🟢 node
+        uses: actions/setup-node@v1.4.2
+        with:
+          always-auth: true
+          node-version: '12.18.2'
+          scope: '@naveed235812'
+          registry-url: https://registry.npmjs.org
+
+      - name: npm install
+        run: npm install
+
+      - name: npm build
+        run: npm run build
+
+      - name: npm pack       
+        run: npm pack
+
+      - name: display root
+        run: |
+          dir
+
+      - name: display pack file
+        run: |
+          cd components
+          dir
+          cd hello-world
+          dir
+
+      # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
+      - name: 🚀 publish
+        run: npm publish --access public
+        working-directory: components/hello-world
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

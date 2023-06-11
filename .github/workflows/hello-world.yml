@@ -2,6 +2,7 @@ name: "publish-hello-world-component"
 
 # Run this action on every push to master branch 
 on:
+  workflow_dispatch: # To manually run the job
   push:
     branches:
       - main

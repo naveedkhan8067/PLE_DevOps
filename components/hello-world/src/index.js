@@ -12,9 +12,9 @@ program.option("-r, --red", "Display the message in Red.");
 program.parse(process.argv);
 
 if (program.green) {
-    console.log(chalk.green("Message was configured to show in green color."));
+    console.log(chalk.green("Message was configured to show in green color!"));
 }
 
 if (program.red) {
-    console.log(chalk.red("Message was configured to show in red color."));
+    console.log(chalk.red("Message was configured to show in red color!"));
 }

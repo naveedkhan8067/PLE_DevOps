@@ -19,19 +19,23 @@ if (program.red) {
     console.log(chalk.red("Message was configured to show in red color."));
 }
 
-//command: preprocess index.js . -WINDOWS=true, -TEMP=true > Source.full.js
+// ** c-preprocess **
+// 1st globally install this package
+//command: c-preprocessor index.js outputFile.js
 //-------------------------------------------------
-// #ifdef WINDOWS
-  // #ifdef TEMP
-console.log("Windows Platform Support");
-  // #else
-  console.log("temp not defined")
-  // #endif
-// #elifdef LINUX
-console.log("Linux Platform Support");
-// #else
-console.log("iOS Platform Support");
-// #endif
+#include "config1.js"
+
+#if variable1 + variable2 == 5 && defined(MY_CONST)
+console("Multi-condition test")
+#elif "MY_CONST2" == "House"
+console.log("Equality Check Pass")
+#else
+console.log("Default Statement!")
+#endif
+
+#ifndef MY_CONST3
+console.log("Var is not defined!")
+#else
+console.log("Var is defined!")
+#endif
 //-------------------------------------------------
-
-

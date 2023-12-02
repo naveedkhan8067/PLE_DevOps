@@ -19,7 +19,8 @@ if (program.red) {
     console.log(chalk.red("Message was configured to show in red color."));
 }
 
-
+//command: preprocess index.js . -WINDOWS=true, -TEMP=true > Source.full.js
+//-------------------------------------------------
 // #ifdef WINDOWS
   // #ifdef TEMP
 console.log("Windows Platform Support");
@@ -31,6 +32,6 @@ console.log("Linux Platform Support");
 // #else
 console.log("iOS Platform Support");
 // #endif
-
+//-------------------------------------------------
 
 

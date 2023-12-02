@@ -18,3 +18,19 @@ if (program.green) {
 if (program.red) {
     console.log(chalk.red("Message was configured to show in red color."));
 }
+
+
+// #ifdef WINDOWS
+  // #ifdef TEMP
+console.log("Windows Platform Support");
+  // #else
+  console.log("temp not defined")
+  // #endif
+// #elifdef LINUX
+console.log("Linux Platform Support");
+// #else
+console.log("iOS Platform Support");
+// #endif
+
+
+

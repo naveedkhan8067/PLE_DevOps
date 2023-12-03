@@ -3,6 +3,7 @@ const path = require("path");
 const chalk=require("chalk");
 const rimraf = require("rimraf");
 const commander = require("commander");
+const main = require("./Main").Main;
 
 const program = new commander.Command("Hello World NPM CLI");
 program.option("--displayMsg");
@@ -39,3 +40,6 @@ if (program.red) {
 // console.log("Var is defined!")
 // #endif
 //-------------------------------------------------
+
+var str = "Hello World";
+main(str);

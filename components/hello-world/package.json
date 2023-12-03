@@ -19,6 +19,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "c-preprocessor": "^0.2.13",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
     "readdirp": "^3.0.0"

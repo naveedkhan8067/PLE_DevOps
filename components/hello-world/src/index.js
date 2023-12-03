@@ -3,6 +3,7 @@ const path = require("path");
 const chalk=require("chalk");
 const rimraf = require("rimraf");
 const commander = require("commander");
+const main = require("./Main").Main;
 
 const program = new commander.Command("Hello World NPM CLI");
 program.option("--displayMsg");
@@ -18,3 +19,27 @@ if (program.green) {
 if (program.red) {
     console.log(chalk.red("Message was configured to show in red color."));
 }
+
+// ** c-preprocess **
+// 1st globally install this package
+//command: c-preprocessor index.js outputFile.js
+//-------------------------------------------------
+// #include "config1.js"
+
+// #if variable1 + variable2 == 5 && defined(MY_CONST)
+// console("Multi-condition test")
+// #elif "MY_CONST2" == "House"
+// console.log("Equality Check Pass")
+// #else
+// console.log("Default Statement!")
+// #endif
+
+// #ifndef MY_CONST3
+// console.log("Var is not defined!")
+// #else
+// console.log("Var is defined!")
+// #endif
+//-------------------------------------------------
+
+var str = "Hello World";
+main(str);

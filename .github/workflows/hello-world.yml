@@ -13,8 +13,54 @@ on:
   #     - main
 
 jobs:
-  release:
-    name: "publish component"
+  #Existing release job commented, need to be modifyed publishing w.r.t varients
+  # release:
+  #   name: "publish component"
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: 📚 checkout
+  #       uses: actions/checkout@v2.1.1
+
+  #     - name: 🟢 node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         always-auth: true
+  #         node-version: '12.18.2'
+  #         scope: '@naveed235812'
+  #         registry-url: https://registry.npmjs.org
+
+  #     - name: npm install
+  #       run: npm install
+  #       working-directory: ./components/hello-world
+
+  #     - name: npm build
+  #       run: npm run build
+  #       working-directory: ./components/hello-world
+
+  #     - name: npm pack       
+  #       run: npm pack
+  #       working-directory: ./components/hello-world
+
+  #     - name: display root
+  #       run: |
+  #         dir
+
+  #     - name: display pack file
+  #       run: |
+  #         cd components
+  #         dir
+  #         cd hello-world
+  #         dir
+
+  #     # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
+  #     - name: 🚀 publish
+  #       run: npm publish --access public
+  #       working-directory: components/hello-world
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+  linux:
+    name: "Linux Varient"
     runs-on: windows-latest
     steps:
       - name: 📚 checkout
@@ -54,6 +100,25 @@ jobs:
         run: node ./lib/index.js
         working-directory: ./components/hello-world
 
+  mac:
+    name: "Mac Varient"
+    runs-on: windows-latest
+    steps:
+      - name: 📚 checkout
+        uses: actions/checkout@v2.1.1
+
+      - name: 🟢 node
+        uses: actions/setup-node@v3
+        with:
+          always-auth: true
+          node-version: '12.18.2'
+          scope: '@naveed235812'
+          registry-url: https://registry.npmjs.org
+
+      - name: npm install
+        run: npm install
+        working-directory: ./components/hello-world
+
       - name: Prepare Varient Config
         run: |
           python .\preparevarientConfig.py
@@ -74,6 +139,25 @@ jobs:
 
       - name: Execute Mac Varient
         run: node ./lib/index.js
+        working-directory: ./components/hello-world
+
+  windows:
+    name: "Windows Varient"
+    runs-on: windows-latest
+    steps:
+      - name: 📚 checkout
+        uses: actions/checkout@v2.1.1
+
+      - name: 🟢 node
+        uses: actions/setup-node@v3
+        with:
+          always-auth: true
+          node-version: '12.18.2'
+          scope: '@naveed235812'
+          registry-url: https://registry.npmjs.org
+
+      - name: npm install
+        run: npm install
         working-directory: ./components/hello-world
 
       - name: Prepare Varient Config
@@ -98,24 +182,3 @@ jobs:
         run: node ./lib/index.js
         working-directory: ./components/hello-world
 
-      # - name: npm pack       
-      #   run: npm pack
-      #   working-directory: ./components/hello-world
-
-      # - name: display root
-      #   run: |
-      #     dir
-
-      # - name: display pack file
-      #   run: |
-      #     cd components
-      #     dir
-      #     cd hello-world
-      #     dir
-
-      # # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
-      # - name: 🚀 publish
-      #   run: npm publish --access public
-      #   working-directory: components/hello-world
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

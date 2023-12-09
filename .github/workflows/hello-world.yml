@@ -95,24 +95,24 @@ jobs:
         run: node ./lib/index.js
         working-directory: ./components/hello-world
 
-      - name: npm pack       
-        run: npm pack
-        working-directory: ./components/hello-world
+      # - name: npm pack       
+      #   run: npm pack
+      #   working-directory: ./components/hello-world
 
-      - name: display root
-        run: |
-          dir
+      # - name: display root
+      #   run: |
+      #     dir
 
-      - name: display pack file
-        run: |
-          cd components
-          dir
-          cd hello-world
-          dir
+      # - name: display pack file
+      #   run: |
+      #     cd components
+      #     dir
+      #     cd hello-world
+      #     dir
 
-      # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
-      - name: 🚀 publish
-        run: npm publish --access public
-        working-directory: components/hello-world
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      # # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
+      # - name: 🚀 publish
+      #   run: npm publish --access public
+      #   working-directory: components/hello-world
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

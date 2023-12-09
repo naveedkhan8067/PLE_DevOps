@@ -61,7 +61,7 @@ jobs:
 
   linux:
     name: "Linux Varient"
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 📚 checkout
         uses: actions/checkout@v2.1.1
@@ -102,7 +102,7 @@ jobs:
 
   mac:
     name: "Mac Varient"
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
       - name: 📚 checkout
         uses: actions/checkout@v2.1.1

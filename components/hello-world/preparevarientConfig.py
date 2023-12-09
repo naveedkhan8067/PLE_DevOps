@@ -14,5 +14,10 @@ else:
 
 print("-> Current working directory: " + str(os.getcwd()))
 dst = os.path.join(os.getcwd(), "src", "VarientConfig.js")
+
+#clean destination file if already exist
+if(os.path.exists(dst)):
+  os.remove(dst)
+
 os.rename(configFile, dst)
 print("-> Varient config is successfully prepared")

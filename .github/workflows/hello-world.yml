@@ -80,7 +80,7 @@ jobs:
 
       - name: Prepare Varient Config
         run: |
-          python .\preparevarientConfig.py
+          python preparevarientConfig.py
         working-directory: ./components/hello-world
         env:
           VARIENT_TYPE: LINUX
@@ -121,7 +121,7 @@ jobs:
 
       - name: Prepare Varient Config
         run: |
-          python .\preparevarientConfig.py
+          python preparevarientConfig.py
         working-directory: ./components/hello-world
         env:
           VARIENT_TYPE: MAC

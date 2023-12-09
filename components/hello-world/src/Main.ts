@@ -4,7 +4,7 @@ import * as chalk from "chalk";
 
 export function Main (subStr: string) {
 // command: c-preprocessor Main.ts MainoutputFile.ts
-#include "config1.js"
+#include "VarientConfig.js"
 #if "VARIENT" == "MAC"
 console.log("Mac platform string value: " + subStr);
 #elif "VARIENT" == "LINUX"

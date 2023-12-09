@@ -32,28 +32,87 @@ jobs:
         run: npm install
         working-directory: ./components/hello-world
 
+      - name: Prepare Varient Config
+        run: |
+          python .\preparevarientConfig.py
+        working-directory: ./components/hello-world
+        env:
+          VARIENT_TYPE: LINUX
+
+      - name: Execute C-Preprocessor
+        run: |
+          echo example of c-preprocessor
+          c-preprocessor ./src/Main.ts ./src/Main.ts
+        working-directory: ./components/hello-world
+
       - name: npm build
         run: npm run build
         working-directory: ./components/hello-world
 
-      - name: npm pack       
-        run: npm pack
+      - name: Execute Linux Varient
+        run: node ./lib/index.js
         working-directory: ./components/hello-world
 
-      - name: display root
+      - name: Prepare Varient Config
         run: |
-          dir
-
-      - name: display pack file
-        run: |
-          cd components
-          dir
-          cd hello-world
-          dir
-
-      # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
-      - name: 🚀 publish
-        run: npm publish --access public
-        working-directory: components/hello-world
+          python .\preparevarientConfig.py
+        working-directory: ./components/hello-world
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+          VARIENT_TYPE: MAC
+
+      - name: Execute C-Preprocessor
+        run: |
+          echo example of c-preprocessor
+          c-preprocessor ./src/Main.ts ./src/Main.ts
+        working-directory: ./components/hello-world
+
+      - name: npm build
+        run: npm run build
+        working-directory: ./components/hello-world
+
+      - name: Execute Mac Varient
+        run: node ./lib/index.js
+        working-directory: ./components/hello-world
+
+      - name: Prepare Varient Config
+        run: |
+          python .\preparevarientConfig.py
+        working-directory: ./components/hello-world
+        env:
+          VARIENT_TYPE: WINDOWS
+
+      - name: Execute C-Preprocessor
+        run: |
+          echo example of c-preprocessor
+          c-preprocessor ./src/Main.ts ./src/Main.ts
+        working-directory: ./components/hello-world
+
+      - name: npm build
+        run: npm run build
+        working-directory: ./components/hello-world
+
+      - name: Execute Windows Varient
+        run: node ./lib/index.js
+        working-directory: ./components/hello-world
+
+      # - name: npm pack       
+      #   run: npm pack
+      #   working-directory: ./components/hello-world
+
+      # - name: display root
+      #   run: |
+      #     dir
+
+      # - name: display pack file
+      #   run: |
+      #     cd components
+      #     dir
+      #     cd hello-world
+      #     dir
+
+      # # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
+      # - name: 🚀 publish
+      #   run: npm publish --access public
+      #   working-directory: components/hello-world
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

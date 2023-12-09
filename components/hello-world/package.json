@@ -25,8 +25,6 @@
     "readdirp": "^3.0.0"
   },
   "devDependencies": {
-    "@itwin/eslint-plugin": "^3.7.5",
-    "@itwin/build-tools": "^3.7.5",
     "@types/node": "18.11.5",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^8.2.2",

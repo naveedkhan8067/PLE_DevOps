@@ -41,6 +41,7 @@ jobs:
 
       - name: Execute C-Preprocessor
         run: |
+          npm install c-preprocessor -g
           echo example of c-preprocessor
           c-preprocessor ./src/Main.ts ./src/Main.ts
         working-directory: ./components/hello-world
@@ -62,6 +63,7 @@ jobs:
 
       - name: Execute C-Preprocessor
         run: |
+          npm install c-preprocessor -g
           echo example of c-preprocessor
           c-preprocessor ./src/Main.ts ./src/Main.ts
         working-directory: ./components/hello-world
@@ -83,6 +85,7 @@ jobs:
 
       - name: Execute C-Preprocessor
         run: |
+          npm install c-preprocessor -g
           echo example of c-preprocessor
           c-preprocessor ./src/Main.ts ./src/Main.ts
         working-directory: ./components/hello-world

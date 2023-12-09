@@ -32,8 +32,67 @@ jobs:
         run: npm install
         working-directory: ./components/hello-world
 
+      - name: Prepare Varient Config
+        run: |
+          python .\preparevarientConfig.py
+        working-directory: ./components/hello-world
+        env:
+          VARIENT_TYPE: LINUX
+
+      - name: Execute C-Preprocessor
+        run: |
+          echo example of c-preprocessor
+          c-preprocessor ./src/Main.ts ./src/Main.ts
+        working-directory: ./components/hello-world
+
       - name: npm build
         run: npm run build
+        working-directory: ./components/hello-world
+
+      - name: Execute Linux Varient
+        run: node ./lib/index.js
+        working-directory: ./components/hello-world
+
+      - name: Prepare Varient Config
+        run: |
+          python .\preparevarientConfig.py
+        working-directory: ./components/hello-world
+        env:
+          VARIENT_TYPE: MAC
+
+      - name: Execute C-Preprocessor
+        run: |
+          echo example of c-preprocessor
+          c-preprocessor ./src/Main.ts ./src/Main.ts
+        working-directory: ./components/hello-world
+
+      - name: npm build
+        run: npm run build
+        working-directory: ./components/hello-world
+
+      - name: Execute Mac Varient
+        run: node ./lib/index.js
+        working-directory: ./components/hello-world
+
+      - name: Prepare Varient Config
+        run: |
+          python .\preparevarientConfig.py
+        working-directory: ./components/hello-world
+        env:
+          VARIENT_TYPE: WINDOWS
+
+      - name: Execute C-Preprocessor
+        run: |
+          echo example of c-preprocessor
+          c-preprocessor ./src/Main.ts ./src/Main.ts
+        working-directory: ./components/hello-world
+
+      - name: npm build
+        run: npm run build
+        working-directory: ./components/hello-world
+
+      - name: Execute Windows Varient
+        run: node ./lib/index.js
         working-directory: ./components/hello-world
 
       - name: npm pack       

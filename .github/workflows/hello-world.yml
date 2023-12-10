@@ -13,7 +13,7 @@ on:
   #     - main
 
 jobs:
-  #Existing release job commented, need to be modifyed publishing w.r.t varients
+  #Existing release job for npm package commented, need to be modifyed publishing w.r.t varients
   # release:
   #   name: "publish component"
   #   runs-on: windows-latest
@@ -59,6 +59,92 @@ jobs:
   #       env:
   #         NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
+  #Test job to checkout several repos and test upload Artifacts
+  # test:
+  #   name: "test job"
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: 📚 Checkout PLE_DEVOPS
+  #       uses: actions/checkout@v4
+  #       with:
+  #         path: PLE_DEVOPS
+    
+  #     - name: Checkout Varient_Basic
+  #       uses: actions/checkout@v4
+  #       with:
+  #         repository: naveedkhan8067/Varient_Basic
+  #         token: ${{ secrets.ACCESS_TOKEN_GITHUB }} 
+  #         path: Varient_Basic
+
+  #     - name: Displat Root All Checkout Repos
+  #       run: |
+  #         dir
+
+  #     - name: 🟢 node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         always-auth: true
+  #         node-version: '12.18.2'
+  #         scope: '@naveed235812'
+  #         registry-url: https://registry.npmjs.org
+
+  #     - name: Displat PLE_DEVOPS SRC
+  #       run: |
+  #         dir
+  #       working-directory: ./PLE_DEVOPS
+
+  #     - name: npm install
+  #       run: npm install
+  #       working-directory: ./PLE_DEVOPS/components/hello-world
+
+  #     - name: Prepare Varient Config
+  #       run: |
+  #         python .\preparevarientConfig.py
+  #       working-directory: ./PLE_DEVOPS/components/hello-world
+  #       env:
+  #         VARIENT_TYPE: WINDOWS
+
+  #     - name: Execute C-Preprocessor
+  #       run: |
+  #         npm install c-preprocessor -g
+  #         echo example of c-preprocessor
+  #         c-preprocessor ./src/Main.ts ./src/Main.ts
+  #       working-directory: ./PLE_DEVOPS/components/hello-world
+
+  #     - name: npm build
+  #       run: npm run build
+  #       working-directory: ./PLE_DEVOPS/components/hello-world
+
+  #     - name: Execute PLE_DEVOPS
+  #       run: node ./lib/index.js
+  #       working-directory: ./PLE_DEVOPS/components/hello-world
+
+  #     - name: Displat Varient_Basic SRC
+  #       run: |
+  #         dir
+  #       working-directory: ./Varient_Basic
+
+  #     - name: npm install
+  #       run: npm install
+  #       working-directory: ./Varient_Basic
+        
+  #     - name: npm build
+  #       run: npm run build
+  #       working-directory: ./Varient_Basic
+
+  #     - name: Execute Varient_Basic
+  #       run: node ./lib/index.js
+  #       working-directory: ./Varient_Basic
+
+  #     - name: npm pack       
+  #       run: npm pack
+  #       working-directory: ./Varient_Basic
+
+  #     - uses: actions/upload-artifact@v3
+  #       with:
+  #         name: test-upload-artifact
+  #         path: ./Varient_Basic/naveed235812-VarientBasic*.tgz
+        
   linux:
     name: "Linux Varient"
     runs-on: ubuntu-latest

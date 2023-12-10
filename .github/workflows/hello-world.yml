@@ -119,6 +119,11 @@ jobs:
         run: node ./lib/index.js
         working-directory: ./PLE_DEVOPS/components/hello-world
 
+      - name: Displat Varient_Basic SRC
+        run: |
+          dir
+        working-directory: ./Varient_Basic
+
       - name: npm install
         run: npm install
         working-directory: ./Varient_Basic
@@ -130,6 +135,15 @@ jobs:
       - name: Execute Varient_Basic
         run: node ./lib/index.js
         working-directory: ./Varient_Basic
+
+      - name: npm pack       
+        run: npm pack
+        working-directory: ./Varient_Basic
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: test-upload-artifact
+          path: ./Varient_Basic/naveed235812-VarientBasic*.tgz
         
   linux:
     name: "Linux Varient"

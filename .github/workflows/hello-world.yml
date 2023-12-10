@@ -63,15 +63,15 @@ jobs:
     name: "test job"
     runs-on: windows-latest
     steps:
-      - name: 📚 checkout
+      - name: 📚 Checkout PLE_DEVOPS
         uses: actions/checkout@v4
         with:
           path: PLE_DEVOPS
     
-      - name: Checkout private tools
+      - name: Checkout Varient_Basic
         uses: actions/checkout@v4
         with:
-          repository: Varient_Basic
+          repository: naveedkhan8067/Varient_Basic
           token: ${{ secrets.ACCESS_TOKEN_GITHUB }} 
           path: Varient_Basic
 

@@ -59,6 +59,30 @@ jobs:
   #       env:
   #         NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
+  test:
+    name: "test job"
+    runs-on: windows-latest
+    steps:
+      - name: 📚 checkout
+        uses: actions/checkout@v4
+        with:
+          path: PLE_DEVOPS
+    
+      - name: Checkout private tools
+        uses: actions/checkout@v4
+        with:
+          repository: Varient_Basic
+          token: ${{ secrets.ACCESS_TOKEN_GITHUB }} 
+          path: Varient_Basic
+
+      - name: Displat Root By Dir
+        run: |
+          dir
+
+      - name: Displat Workspace
+        run: |
+          echo %GITHUB_WORKSPACE%
+
   linux:
     name: "Linux Varient"
     runs-on: ubuntu-latest

@@ -1,4 +1,4 @@
-name: "publish-hello-world-component"
+name: "test-c-preprocessor"
 
 # Run this action on every push to master branch 
 on:

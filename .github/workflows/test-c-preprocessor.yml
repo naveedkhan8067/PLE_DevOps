@@ -32,12 +32,12 @@ jobs:
         run: npm install
         working-directory: ./components/hello-world
 
-      - name: Prepare Varient Config
+      - name: Prepare Variant Config
         run: |
-          python preparevarientConfig.py
+          python prepareVariantConfig.py
         working-directory: ./components/hello-world
         env:
-          VARIENT_TYPE: LINUX
+          VARIANT_TYPE: LINUX
 
       - name: Execute C-Preprocessor
         run: |
@@ -50,6 +50,6 @@ jobs:
         run: npm run build
         working-directory: ./components/hello-world
 
-      - name: Execute Linux Varient
+      - name: Execute Linux Variant
         run: node ./lib/index.js
         working-directory: ./components/hello-world

@@ -91,7 +91,7 @@ jobs:
 
       - name: Prepare and Execute C-Preprocessor
         run: |
-          python preparevarientConfig.py
+          python prepareVariantConfig.py
         working-directory: ./components/hello-world
         env:
           VARIANT_TYPE: MAC
@@ -149,7 +149,7 @@ jobs:
 
       - name: Prepare and Execute C-Preprocessor
         run: |
-          python .\preparevarientConfig.py
+          python .\prepareVariantConfig.py
         working-directory: ./components/hello-world
         env:
           VARIANT_TYPE: WINDOWS

@@ -32,19 +32,19 @@ jobs:
         run: npm install
         working-directory: ./components/hello-world
 
-      - name: Prepare Variant Config
+      - name: Prepare and Execute C-Preprocessor
         run: |
           python prepareVariantConfig.py
         working-directory: ./components/hello-world
         env:
           VARIANT_TYPE: LINUX
 
-      - name: Execute C-Preprocessor
-        run: |
-          npm install c-preprocessor -g
-          echo example of c-preprocessor
-          c-preprocessor ./src/Main.ts ./src/Main.ts
-        working-directory: ./components/hello-world
+      # - name: Execute C-Preprocessor
+      #   run: |
+      #     npm install c-preprocessor -g
+      #     echo example of c-preprocessor
+      #     c-preprocessor ./src/Main.ts ./src/Main.ts
+      #   working-directory: ./components/hello-world
 
       - name: npm build
         run: npm run build

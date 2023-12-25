@@ -5,7 +5,9 @@ import shutil
 variant = os.environ['VARIANT_TYPE']
 print("Selected variant: " + str(variant))
 
-component = os.environ['COMPONENT']
+#temporarily disable
+#component = os.environ['COMPONENT']
+component = "hello-world"
 print("Selected component: " + str(component))
 
 configFile = "" 

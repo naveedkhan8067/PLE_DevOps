@@ -3,7 +3,7 @@ import * as path from "path";
 import { expect } from "chai";
 import * as rimraf from "rimraf";
 import { Main } from "../Main";
-#include "VariantConfig.js"
+#include "../VariantConfig.js"
 
 describe("Hello-World Component Tests", async () => {
   it("Get required module type", async () => {

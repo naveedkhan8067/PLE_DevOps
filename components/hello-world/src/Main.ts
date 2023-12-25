@@ -9,13 +9,13 @@ let moduleType;
 
 #if "VARIANT" == "MAC"
 moduleType = "MAC"
-console.log("*** Mac platform string value: " + subStr + " ***");
+console.log("*** Mac platform " + subStr + " ***");
 #elif "VARIANT" == "LINUX"
 moduleType = "LINUX"
-console.log("*** Linux platform string value: " + subStr + " ***");
+console.log("*** Linux platform " + subStr + " ***");
 #else
 moduleType = "WINDOWS"
-console.log("*** Windows platform string value: " + subStr + " ***");
+console.log("*** Windows platform " + subStr + " ***");
 #endif
 return moduleType;
 }

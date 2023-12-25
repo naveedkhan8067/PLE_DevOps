@@ -3,4 +3,4 @@
 #define variable2 4
 //#define MY_CONST2 House
 #define MY_CONST3 42
-#define VARIENT MAC
+#define VARIANT MAC

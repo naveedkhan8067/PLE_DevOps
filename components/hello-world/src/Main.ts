@@ -1,15 +1,21 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as chalk from "chalk";
+#include "VariantConfig.js"
 
-export function Main (subStr: string) {
-// command: c-preprocessor Main.ts MainoutputFile.ts
-#include "VarientConfig.js"
-#if "VARIENT" == "MAC"
+export function Main (subStr: string): string {
+// command: c-preprocessor Main.ts Main.ts
+let moduleType;
+
+#if "VARIANT" == "MAC"
+moduleType = "MAC"
 console.log("*** Mac platform string value: " + subStr + " ***");
-#elif "VARIENT" == "LINUX"
+#elif "VARIANT" == "LINUX"
+moduleType = "LINUX"
 console.log("*** Linux platform string value: " + subStr + " ***");
 #else
+moduleType = "WINDOWS"
 console.log("*** Windows platform string value: " + subStr + " ***");
 #endif
+return moduleType;
 }

@@ -1,5 +1,12 @@
 {
-  "name": "@naveed235812/hello-world",
+#include "VariantConfig.js"
+#if "VARIANT" == "MAC"
+  "name": "@naveed235812/hello-world-MAC",
+#elif "VARIANT" == "LINUX"
+  "name": "@naveed235812/hello-world-LINUX",
+#else
+  "name": "@naveed235812/hello-world-WINDOWS",
+#endif
   "version": "1.1.0",
   "description": "This component display helloworld message on screen.",
   "main": "index.js",
@@ -16,7 +23,7 @@
     "clean": "rimraf lib",
     "copy:assets": "cpx ./src/index.js ./lib",
     "build": "tsc 1>&2 && npm run copy:assets",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --timeout=999999999"
   },
   "dependencies": {
     "c-preprocessor": "^0.2.13",

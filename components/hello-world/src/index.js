@@ -24,7 +24,7 @@ if (program.red) {
 // 1st globally install this package
 //command: c-preprocessor index.js outputFile.js
 //-------------------------------------------------
-// #include "VarientConfig.js"
+// #include "VariantConfig.js"
 
 // #if variable1 + variable2 == 5 && defined(MY_CONST)
 // console("Multi-condition test")

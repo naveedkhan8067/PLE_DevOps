@@ -14,7 +14,7 @@ on:
 
 jobs:  
   component-linux:
-    name: "Linux Variant"
+    name: "Component Linux Variant"
     runs-on: ubuntu-latest
     steps:
       - name: 📚 Checkout
@@ -71,7 +71,7 @@ jobs:
           path: ./components/hello-world/naveed235812-hello-world-LINUX-*.tgz
 
   component-mac:
-    name: "Mac Variant"
+    name: "Component Mac Variant"
     runs-on: macos-latest
     steps:
       - name: 📚 Checkout
@@ -128,7 +128,7 @@ jobs:
           path: ./components/hello-world/naveed235812-hello-world-MAC-*.tgz
 
   component-windows:
-    name: "Windows Variant"
+    name: "Component Windows Variant"
     runs-on: windows-latest
     steps:
       - name: 📚 Checkout

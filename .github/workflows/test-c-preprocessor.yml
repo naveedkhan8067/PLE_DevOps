@@ -28,9 +28,8 @@ jobs:
           scope: '@naveed235812'
           registry-url: https://registry.npmjs.org
 
-      - name: npm install
-        run: npm install
-        working-directory: ./components/hello-world
+      - name: Install C-Preprocessor
+        run: npm install -g c-preprocessor
 
       - name: Prepare and Execute C-Preprocessor
         run: |
@@ -46,8 +45,16 @@ jobs:
       #     c-preprocessor ./src/Main.ts ./src/Main.ts
       #   working-directory: ./components/hello-world
 
+      - name: npm install
+        run: npm install
+        working-directory: ./components/hello-world
+
       - name: npm build
         run: npm run build
+        working-directory: ./components/hello-world
+
+      - name: npm test
+        run: npm run test
         working-directory: ./components/hello-world
 
       - name: Execute Linux Variant

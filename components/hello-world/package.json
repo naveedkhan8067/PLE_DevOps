@@ -23,7 +23,7 @@
     "clean": "rimraf lib",
     "copy:assets": "cpx ./src/index.js ./lib",
     "build": "tsc 1>&2 && npm run copy:assets",
-    "test": "mocha --timeout=999999999"
+    "test": "mocha -r ts-node/register src/test/**.test.ts --timeout 120000"
   },
   "dependencies": {
     "c-preprocessor": "^0.2.13",

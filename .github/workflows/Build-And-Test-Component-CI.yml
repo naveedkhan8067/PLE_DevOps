@@ -220,8 +220,12 @@ jobs:
           scope: '@naveed235812'
           registry-url: https://registry.npmjs.org
 
+      - name: Add Component
+        run: npm install naveed235812-hello-world-windows-1.0.1.tgz
+        working-directory: ./Advance_Variant
+
       - name: Install Dependencies
-        run: npm install naveed235812-hello-world-windows-1.0.0.tgz
+        run: npm install
         working-directory: ./Advance_Variant
 
       - name: Build Component

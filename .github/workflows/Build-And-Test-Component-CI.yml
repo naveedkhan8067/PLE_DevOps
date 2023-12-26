@@ -70,13 +70,6 @@ jobs:
           name: hello-world-linux
           path: ./components/hello-world/naveed235812-hello-world-linux-*.tgz
 
-      # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
-      - name: 🚀 publish
-        run: npm publish --access public
-        working-directory: components/hello-world
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-
   component-mac:
     name: "Component Mac Variant"
     runs-on: macos-latest
@@ -133,13 +126,6 @@ jobs:
         with:
           name: hello-world-mac
           path: ./components/hello-world/naveed235812-hello-world-mac-*.tgz
-
-      # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
-      - name: 🚀 publish
-        run: npm publish --access public
-        working-directory: components/hello-world
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
   component-windows:
     name: "Component Windows Variant"
@@ -198,25 +184,18 @@ jobs:
           name: hello-world-windows
           path: ./components/hello-world/naveed235812-hello-world-windows-*.tgz
 
-      # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
-      - name: 🚀 publish
-        run: npm publish --access public
-        working-directory: components/hello-world
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-
   check-compatibility-with-windows-product:
     needs:
       -  component-windows
-    name: "Product Basic Variant (Windows)"
+    name: "Product Advance Variant (Windows)"
     runs-on: windows-latest
     steps:
-      - name: Checkout Variant_Basic
+      - name: Checkout Advance_Variant
         uses: actions/checkout@v4
         with:
-          repository: naveedkhan8067/Varient_Basic
+          repository: naveedkhan8067/Advance_Variant
           token: ${{ secrets.ACCESS_TOKEN_GITHUB }} 
-          path: Varient_Basic
+          path: Advance_Variant
 
       - name: 🟢 Download Windows Component
         uses: actions/download-artifact@v3

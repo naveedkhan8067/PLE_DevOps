@@ -68,7 +68,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: hello-world-LINUX
-          path: ./components/hello-world/naveed235812-hello-world-LINUX-*.tgz
+          path: ./components/hello-world/naveed235812-hello-world-linux-*.tgz
 
       # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
       - name: 🚀 publish
@@ -132,7 +132,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: hello-world-MAC
-          path: ./components/hello-world/naveed235812-hello-world-MAC-*.tgz
+          path: ./components/hello-world/naveed235812-hello-world-mac-*.tgz
 
       # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
       - name: 🚀 publish
@@ -196,7 +196,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: hello-world-WINDOWS
-          path: ./components/hello-world/naveed235812-hello-world-WINDOWS-*.tgz
+          path: ./components/hello-world/naveed235812-hello-world-windows-*.tgz
 
       # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
       - name: 🚀 publish
@@ -221,7 +221,7 @@ jobs:
       - name: 🟢 Download Windows Component
         uses: actions/download-artifact@v3
         with:
-          name: hello-world-WINDOWS
+          name: hello-world-windows
 
       - name: Display Root
         run: |

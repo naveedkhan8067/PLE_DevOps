@@ -1,11 +1,11 @@
 {
   #include "../../VariantConfig.js"
 #if "VARIANT" == "MAC"
-  "name": "@naveed235812/hello-world-MAC",
+  "name": "@naveed235812/hello-world-mac",
 #elif "VARIANT" == "LINUX"
-  "name": "@naveed235812/hello-world-LINUX",
+  "name": "@naveed235812/hello-world-linux",
 #else
-  "name": "@naveed235812/hello-world-WINDOWS",
+  "name": "@naveed235812/hello-world-windows",
 #endif
   "version": "1.0.0",
   "description": "This component display helloworld message on screen.",

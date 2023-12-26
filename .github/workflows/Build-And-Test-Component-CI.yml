@@ -67,7 +67,7 @@ jobs:
       - name: Publish LINUX Component
         uses: actions/upload-artifact@v3
         with:
-          name: hello-world-LINUX
+          name: hello-world-linux
           path: ./components/hello-world/naveed235812-hello-world-linux-*.tgz
 
       # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
@@ -131,7 +131,7 @@ jobs:
       - name: Publish MAC Component
         uses: actions/upload-artifact@v3
         with:
-          name: hello-world-MAC
+          name: hello-world-mac
           path: ./components/hello-world/naveed235812-hello-world-mac-*.tgz
 
       # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
@@ -195,7 +195,7 @@ jobs:
       - name: Publish Windows Component
         uses: actions/upload-artifact@v3
         with:
-          name: hello-world-WINDOWS
+          name: hello-world-windows
           path: ./components/hello-world/naveed235812-hello-world-windows-*.tgz
 
       # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)

@@ -201,6 +201,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: hello-world-windows
+          path: ./Advance_Variant
 
       - name: Display Root
         run: |
@@ -213,3 +214,15 @@ jobs:
           node-version: '12.18.2'
           scope: '@naveed235812'
           registry-url: https://registry.npmjs.org
+
+      - name: Install Dependencies
+        run: npm install naveed235812-hello-world-windows-1.0.0.tgz
+        working-directory: ./Advance_Variant
+
+      - name: Build Component
+        run: npm run build
+        working-directory: ./Advance_Variant
+
+      - name: Execute Advance Variant
+        run: node ./lib/index.js
+        working-directory: ./Advance_Variant

@@ -70,6 +70,13 @@ jobs:
           name: hello-world-LINUX
           path: ./components/hello-world/naveed235812-hello-world-LINUX-*.tgz
 
+      # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
+      - name: 🚀 publish
+        run: npm publish --access public
+        working-directory: components/hello-world
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
   component-mac:
     name: "Component Mac Variant"
     runs-on: macos-latest
@@ -127,6 +134,13 @@ jobs:
           name: hello-world-MAC
           path: ./components/hello-world/naveed235812-hello-world-MAC-*.tgz
 
+      # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
+      - name: 🚀 publish
+        run: npm publish --access public
+        working-directory: components/hello-world
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
   component-windows:
     name: "Component Windows Variant"
     runs-on: windows-latest
@@ -183,6 +197,13 @@ jobs:
         with:
           name: hello-world-WINDOWS
           path: ./components/hello-world/naveed235812-hello-world-WINDOWS-*.tgz
+
+      # The NPM_AUTH_TOKEN will be pulled from the github repository (settings/secretes)
+      - name: 🚀 publish
+        run: npm publish --access public
+        working-directory: components/hello-world
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
   check-compatibility-with-windows-product:
     needs:

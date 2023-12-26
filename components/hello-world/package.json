@@ -7,7 +7,7 @@
 #else
   "name": "@naveed235812/hello-world-windows",
 #endif
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This component display helloworld message on screen.",
   "main": "index.js",
   "bin": {

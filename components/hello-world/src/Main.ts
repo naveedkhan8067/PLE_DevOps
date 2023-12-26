@@ -15,7 +15,7 @@ moduleType = "LINUX"
 console.log("*** Linux platform " + subStr + " ***");
 #else
 moduleType = "WINDOWS"
-console.log("*** Windows platform " + subStr + " ***");
+console.log("*** Windows platform --> " + subStr + " ***");
 #endif
 return moduleType;
 }

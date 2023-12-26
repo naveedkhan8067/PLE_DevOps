@@ -207,6 +207,11 @@ jobs:
         run: |
           dir
 
+      - name: Display Root
+        run: |
+          cd Advance_Variant
+          dir
+
       - name: 🟢 Node
         uses: actions/setup-node@v3
         with:

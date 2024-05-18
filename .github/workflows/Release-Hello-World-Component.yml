@@ -12,8 +12,6 @@ on:
 jobs:
   release-to-npmjs:
     runs-on: windows-latest
-    permissions:
-      actions: read
 
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
@@ -51,7 +49,7 @@ jobs:
             node-version: 18
             scope: '@naveed235812'
             registry-url: https://registry.npmjs.org
-            
+
       - name: 🚀 publish to npm.js
         run: npm publish --access public
         env:

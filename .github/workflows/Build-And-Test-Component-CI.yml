@@ -25,10 +25,10 @@ jobs:
         uses: actions/checkout@v2.1.1
 
       - name: 🟢 Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           always-auth: true
-          node-version: '12.18.2'
+          node-version: 18
           scope: '@naveed235812'
           registry-url: https://registry.npmjs.org
 
@@ -139,10 +139,10 @@ jobs:
         uses: actions/checkout@v2.1.1
 
       - name: 🟢 Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           always-auth: true
-          node-version: '12.18.2'
+          node-version: 18
           scope: '@naveed235812'
           registry-url: https://registry.npmjs.org
 
@@ -217,10 +217,10 @@ jobs:
           dir
 
       - name: 🟢 Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           always-auth: true
-          node-version: '12.18.2'
+          node-version: 18
           scope: '@naveed235812'
           registry-url: https://registry.npmjs.org
 

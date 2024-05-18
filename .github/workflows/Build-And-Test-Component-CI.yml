@@ -8,9 +8,11 @@ on:
       - main
     paths:
       - components/hello-world/**
-  # pull_request:
-  #   branches:    
-  #     - main
+  pull_request:
+    branches:    
+      - main
+    paths:
+      - components/hello-world/**
 
 jobs:  
   component-linux:

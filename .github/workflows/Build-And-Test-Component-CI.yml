@@ -8,11 +8,13 @@ on:
       - main
     paths:
       - components/hello-world/**
+      - .github\workflows\Build-And-Test-Component-CI.yml
   pull_request:
     branches:    
       - main
     paths:
       - components/hello-world/**
+      - .github\workflows\Build-And-Test-Component-CI.yml
 
 jobs:  
   component-linux:

@@ -10,19 +10,9 @@ on:
       - enable-trigger
   
 jobs:
-  on-success:
-    runs-on: ubuntu-latest
-    permissions:
-        actions: write
-        checks: write
-        contents: write
-        deployments: write
-        id-token: write
-        packages: write
-        repository-projects: write
-        security-events: write
+  release-to-npmjs:
+    runs-on: windows-latest
 
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: 'Download artifact'
         uses: actions/github-script@v6
@@ -45,13 +35,22 @@ jobs:
             let fs = require('fs');
             fs.writeFileSync(`${process.env.GITHUB_WORKSPACE}/hello-world-windows.zip`, Buffer.from(download.data));
 
-      - name: Display Root
-        run: |
-          dir
-
       - name: 'Unzip artifact'
         run: unzip hello-world-windows.zip
 
       - name: Display Root
         run: |
           dir
+
+      - name: 🟢 Node
+        uses: actions/setup-node@v4
+        with:
+          always-auth: true
+          node-version: 18
+          scope: '@naveed235812'
+          registry-url: https://registry.npmjs.org
+
+      - name: 🚀 publish to npm.js
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

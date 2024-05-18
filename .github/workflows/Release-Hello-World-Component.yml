@@ -11,9 +11,9 @@ on:
   
 jobs:
   release-to-npmjs:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
-        actions: write
+        actions: read
 
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
@@ -38,13 +38,14 @@ jobs:
             let fs = require('fs');
             fs.writeFileSync(`${process.env.GITHUB_WORKSPACE}/hello-world-windows.zip`, Buffer.from(download.data));
 
-      - name: Display Root
-        run: |
-          dir
-
       - name: 'Unzip artifact'
         run: unzip hello-world-windows.zip
 
       - name: Display Root
         run: |
           dir
+
+      - name: 🚀 publish to npm.js
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

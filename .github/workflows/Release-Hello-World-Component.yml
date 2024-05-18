@@ -13,7 +13,7 @@ jobs:
   release-to-npmjs:
     runs-on: windows-latest
     permissions:
-        actions: read
+      actions: read
 
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:

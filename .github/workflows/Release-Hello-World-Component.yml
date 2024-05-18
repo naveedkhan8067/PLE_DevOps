@@ -10,11 +10,10 @@ on:
       - enable-trigger
   
 jobs:
-  on-success:
+  release-to-npmjs:
     runs-on: ubuntu-latest
     permissions:
         actions: write
-        contents: write
 
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:

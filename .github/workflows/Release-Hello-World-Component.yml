@@ -44,7 +44,14 @@ jobs:
       - name: Display Root
         run: |
           dir
-
+          - name: 🟢 Node
+          uses: actions/setup-node@v4
+          with:
+            always-auth: true
+            node-version: 18
+            scope: '@naveed235812'
+            registry-url: https://registry.npmjs.org
+            
       - name: 🚀 publish to npm.js
         run: npm publish --access public
         env:

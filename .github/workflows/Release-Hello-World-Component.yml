@@ -14,13 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
         actions: write
-        checks: write
         contents: write
-        deployments: write
         id-token: write
         packages: write
-        repository-projects: write
-        security-events: write
 
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:

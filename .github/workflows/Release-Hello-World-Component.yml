@@ -5,8 +5,8 @@ on:
     workflows: [Build-And-Test-Component]
     types: 
       - completed
-    branches:
-      - main
+    # branches:
+    #   - main
   
 jobs:
   on-success:

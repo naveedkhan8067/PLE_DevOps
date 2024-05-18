@@ -37,6 +37,13 @@ jobs:
             let fs = require('fs');
             fs.writeFileSync(`${process.env.GITHUB_WORKSPACE}/hello-world-windows.zip`, Buffer.from(download.data));
 
+      - name: Display Root
+        run: |
+          dir
+
+      - name: 'Unzip artifact'
+        run: unzip
+
       - name: 'Unzip artifact'
         run: unzip hello-world-windows.zip
 

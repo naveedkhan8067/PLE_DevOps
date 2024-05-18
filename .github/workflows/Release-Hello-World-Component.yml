@@ -7,12 +7,14 @@ on:
       - completed
     branches:
       - main
-      - enable-trigger
   
 jobs:
   release-to-npmjs:
     runs-on: windows-latest
+    permissions:
+      actions: write
 
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: 'Download artifact'
         uses: actions/github-script@v6

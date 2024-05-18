@@ -85,7 +85,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           always-auth: true
-          node-version: 12
+          node-version: 18
           scope: '@naveed235812'
           registry-url: https://registry.npmjs.org
 

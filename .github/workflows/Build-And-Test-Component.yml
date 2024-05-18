@@ -16,119 +16,119 @@ on:
       - .github/workflows/Build-And-Test-Component.yml
 
 jobs:  
-  component-linux:
-    name: "Component Linux Variant"
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📚 Checkout
-        uses: actions/checkout@v2.1.1
+#   component-linux:
+#     name: "Component Linux Variant"
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: 📚 Checkout
+#         uses: actions/checkout@v2.1.1
 
-      - name: 🟢 Node
-        uses: actions/setup-node@v4
-        with:
-          always-auth: true
-          node-version: 18
-          scope: '@naveed235812'
-          registry-url: https://registry.npmjs.org
+#       - name: 🟢 Node
+#         uses: actions/setup-node@v4
+#         with:
+#           always-auth: true
+#           node-version: 18
+#           scope: '@naveed235812'
+#           registry-url: https://registry.npmjs.org
 
-      - name: Install C-Preprocessor
-        run: npm install -g c-preprocessor
+#       - name: Install C-Preprocessor
+#         run: npm install -g c-preprocessor
 
-      - name: Prepare and Execute C-Preprocessor
-        run: |
-          python prepareVariantConfig.py
-        env:
-          VARIANT_TYPE: LINUX
+#       - name: Prepare and Execute C-Preprocessor
+#         run: |
+#           python prepareVariantConfig.py
+#         env:
+#           VARIANT_TYPE: LINUX
 
-      # - name: Execute C-Preprocessor
-      #   run: |
-      #     npm install c-preprocessor -g
-      #     echo example of c-preprocessor
-      #     c-preprocessor ./src/Main.ts ./src/Main.ts
-      #   working-directory: ./components/hello-world
+#       # - name: Execute C-Preprocessor
+#       #   run: |
+#       #     npm install c-preprocessor -g
+#       #     echo example of c-preprocessor
+#       #     c-preprocessor ./src/Main.ts ./src/Main.ts
+#       #   working-directory: ./components/hello-world
 
-      - name: Install Dependencies
-        run: npm install
-        working-directory: ./components/hello-world
+#       - name: Install Dependencies
+#         run: npm install
+#         working-directory: ./components/hello-world
 
-      - name: Build Component
-        run: npm run build
-        working-directory: ./components/hello-world
+#       - name: Build Component
+#         run: npm run build
+#         working-directory: ./components/hello-world
 
-      - name: Execute Tests
-        run: npm run test
-        working-directory: ./components/hello-world
+#       - name: Execute Tests
+#         run: npm run test
+#         working-directory: ./components/hello-world
 
-      - name: Execute Linux Variant
-        run: node ./lib/index.js
-        working-directory: ./components/hello-world
+#       - name: Execute Linux Variant
+#         run: node ./lib/index.js
+#         working-directory: ./components/hello-world
 
-      - name: Package Component      
-        run: npm pack
-        working-directory: ./components/hello-world
+#       - name: Package Component      
+#         run: npm pack
+#         working-directory: ./components/hello-world
 
-      - name: Publish LINUX Component
-        uses: actions/upload-artifact@v3
-        with:
-          name: hello-world-linux
-          path: ./components/hello-world/naveed235812-hello-world-linux-*.tgz
+#       - name: Publish LINUX Component
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: hello-world-linux
+#           path: ./components/hello-world/naveed235812-hello-world-linux-*.tgz
 
-  component-mac:
-    name: "Component Mac Variant"
-    runs-on: macos-latest
-    steps:
-      - name: 📚 Checkout
-        uses: actions/checkout@v2.1.1
+#   component-mac:
+#     name: "Component Mac Variant"
+#     runs-on: macos-latest
+#     steps:
+#       - name: 📚 Checkout
+#         uses: actions/checkout@v2.1.1
 
-      - name: 🟢 Node
-        uses: actions/setup-node@v4
-        with:
-          always-auth: true
-          node-version: 18
-          scope: '@naveed235812'
-          registry-url: https://registry.npmjs.org
+#       - name: 🟢 Node
+#         uses: actions/setup-node@v4
+#         with:
+#           always-auth: true
+#           node-version: 18
+#           scope: '@naveed235812'
+#           registry-url: https://registry.npmjs.org
 
-      - name: Install C-Preprocessor
-        run: npm install -g c-preprocessor
+#       - name: Install C-Preprocessor
+#         run: npm install -g c-preprocessor
 
-      - name: Prepare and Execute C-Preprocessor
-        run: |
-          python prepareVariantConfig.py
-        env:
-          VARIANT_TYPE: MAC
+#       - name: Prepare and Execute C-Preprocessor
+#         run: |
+#           python prepareVariantConfig.py
+#         env:
+#           VARIANT_TYPE: MAC
 
-      # - name: Execute C-Preprocessor
-      #   run: |
-      #     npm install c-preprocessor -g
-      #     echo example of c-preprocessor
-      #     c-preprocessor ./src/Main.ts ./src/Main.ts
-      #   working-directory: ./components/hello-world
+#       # - name: Execute C-Preprocessor
+#       #   run: |
+#       #     npm install c-preprocessor -g
+#       #     echo example of c-preprocessor
+#       #     c-preprocessor ./src/Main.ts ./src/Main.ts
+#       #   working-directory: ./components/hello-world
 
-      - name: Install Dependencies
-        run: npm install
-        working-directory: ./components/hello-world
+#       - name: Install Dependencies
+#         run: npm install
+#         working-directory: ./components/hello-world
 
-      - name: Build Component
-        run: npm run build
-        working-directory: ./components/hello-world
+#       - name: Build Component
+#         run: npm run build
+#         working-directory: ./components/hello-world
 
-      - name: Execute Tests
-        run: npm run test
-        working-directory: ./components/hello-world
+#       - name: Execute Tests
+#         run: npm run test
+#         working-directory: ./components/hello-world
 
-      - name: Execute Mac Varient
-        run: node ./lib/index.js
-        working-directory: ./components/hello-world
+#       - name: Execute Mac Varient
+#         run: node ./lib/index.js
+#         working-directory: ./components/hello-world
 
-      - name: Package Component       
-        run: npm pack
-        working-directory: ./components/hello-world
+#       - name: Package Component       
+#         run: npm pack
+#         working-directory: ./components/hello-world
 
-      - name: Publish MAC Component
-        uses: actions/upload-artifact@v3
-        with:
-          name: hello-world-mac
-          path: ./components/hello-world/naveed235812-hello-world-mac-*.tgz
+#       - name: Publish MAC Component
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: hello-world-mac
+#           path: ./components/hello-world/naveed235812-hello-world-mac-*.tgz
 
   component-windows:
     name: "Component Windows Variant"
@@ -187,54 +187,54 @@ jobs:
           name: hello-world-windows
           path: ./components/hello-world/naveed235812-hello-world-windows-*.tgz
 
-  check-compatibility-with-windows-product:
-    needs:
-      -  component-windows
-    name: "Product Advance Variant (Windows)"
-    runs-on: windows-latest
-    steps:
-      - name: Checkout Advance_Variant
-        uses: actions/checkout@v4
-        with:
-          repository: naveedkhan8067/Advance_Variant
-          token: ${{ secrets.ACCESS_TOKEN_GITHUB }} 
-          path: Advance_Variant
+  # check-compatibility-with-windows-product:
+  #   needs:
+  #     -  component-windows
+  #   name: "Product Advance Variant (Windows)"
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: Checkout Advance_Variant
+  #       uses: actions/checkout@v4
+  #       with:
+  #         repository: naveedkhan8067/Advance_Variant
+  #         token: ${{ secrets.ACCESS_TOKEN_GITHUB }} 
+  #         path: Advance_Variant
 
-      - name: 🟢 Download Windows Component
-        uses: actions/download-artifact@v3
-        with:
-          name: hello-world-windows
-          path: ./Advance_Variant
+  #     - name: 🟢 Download Windows Component
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: hello-world-windows
+  #         path: ./Advance_Variant
 
-      - name: Display Root
-        run: |
-          dir
+  #     - name: Display Root
+  #       run: |
+  #         dir
 
-      - name: Display Root
-        run: |
-          cd Advance_Variant
-          dir
+  #     - name: Display Root
+  #       run: |
+  #         cd Advance_Variant
+  #         dir
 
-      - name: 🟢 Node
-        uses: actions/setup-node@v4
-        with:
-          always-auth: true
-          node-version: 18
-          scope: '@naveed235812'
-          registry-url: https://registry.npmjs.org
+  #     - name: 🟢 Node
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         always-auth: true
+  #         node-version: 18
+  #         scope: '@naveed235812'
+  #         registry-url: https://registry.npmjs.org
 
-      - name: Add Component
-        run: npm install naveed235812-hello-world-windows-1.0.1.tgz
-        working-directory: ./Advance_Variant
+  #     - name: Add Component
+  #       run: npm install naveed235812-hello-world-windows-1.0.1.tgz
+  #       working-directory: ./Advance_Variant
 
-      - name: Install Dependencies
-        run: npm install
-        working-directory: ./Advance_Variant
+  #     - name: Install Dependencies
+  #       run: npm install
+  #       working-directory: ./Advance_Variant
 
-      - name: Build Component
-        run: npm run build
-        working-directory: ./Advance_Variant
+  #     - name: Build Component
+  #       run: npm run build
+  #       working-directory: ./Advance_Variant
 
-      - name: Execute Advance Variant
-        run: node ./lib/index.js
-        working-directory: ./Advance_Variant
+  #     - name: Execute Advance Variant
+  #       run: node ./lib/index.js
+  #       working-directory: ./Advance_Variant

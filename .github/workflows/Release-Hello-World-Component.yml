@@ -5,8 +5,9 @@ on:
     workflows: [Build-And-Test-Component]
     types: 
       - completed
-    # branches:
-    #   - main
+    branches:
+      - main
+      - enable-trigger
   
 jobs:
   on-success:

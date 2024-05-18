@@ -11,6 +11,21 @@ on:
 jobs:
   on-success:
     runs-on: ubuntu-latest
+    permissions:
+        actions: write
+        checks: write
+        contents: write
+        deployments: write
+        id-token: write
+        issues: write
+        discussions: write
+        packages: write
+        pages: write
+        pull-requests: write
+        repository-projects: write
+        security-events: write
+        statuses: write
+
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: 'Download artifact'

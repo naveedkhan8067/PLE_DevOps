@@ -21,20 +21,20 @@ jobs:
         with:
           script: |
             let packs = ["hello-world-windows", "hello-world-linux", "hello-world-mac"];
-            let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+            let artifactsObj = await github.rest.actions.listWorkflowRunArtifacts({
                owner: context.repo.owner,
                repo: context.repo.repo,
                run_id: context.payload.workflow_run.id,
             });
             for (var item of packs) {
               console.log(item);
-              let matchArtifact = allArtifacts.data.artifacts.filter((artifact) => {
+              let requiredArtifact = artifactsObj.data.artifacts.filter((artifact) => {
                 return artifact.name == item
               })[0];
               let download = await github.rest.actions.downloadArtifact({
                  owner: context.repo.owner,
                  repo: context.repo.repo,
-                 artifact_id: matchArtifact.id,
+                 artifact_id: requiredArtifact.id,
                  archive_format: 'zip',
               });
               let fs = require('fs');
@@ -42,19 +42,11 @@ jobs:
               fs.writeFileSync(workspace+item+'.zip', Buffer.from(download.data));
             };
 
-      - name: 'Unzip artifact'
-        run: unzip hello-world-windows.zip
-
-      - name: Get Package Filename
+      - name: 'Unzip Artifacts'
         run: |
-          import os
-          from glob import glob
-
-          filename = glob('naveed235812-hello-world-windows-**.tgz*')
-          env_file = os.getenv('GITHUB_ENV')
-          with open(env_file, "a") as myfile:
-            myfile.write("PACK_NAME="+str(filename[0]))
-        shell: python
+          unzip hello-world-windows.zip
+          unzip hello-world-mac.zip
+          unzip hello-world-linux.zip
 
       - name: 🟢 Node
         uses: actions/setup-node@v4
@@ -64,8 +56,11 @@ jobs:
           scope: '@naveed235812'
           registry-url: https://registry.npmjs.org
 
-      - name: 🚀 publish to npm.js
-        run: npm publish --access public ${{ env.PACK_NAME }}
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-          
+      - name: Publish Artifacts
+        run: |
+          import os
+          from glob import glob
+          artifacts = glob('naveed235812-hello-world-**-**.tgz*')
+          for artifact in artifacts:
+            os.system("npm publish --access public " + artifact)
+        shell: python

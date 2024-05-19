@@ -1,0 +1,196 @@
+name: "Build-And-Test-Component-Reuse-Case"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - components/hello-world/**
+      - .github/workflows/Build-And-Test-Component-Reuse-Case.yml
+  pull_request:
+    branches:    
+      - main
+    paths:
+      - components/hello-world/**
+      - .github/workflows/Build-And-Test-Component-Reuse-Case.yml
+
+jobs:  
+  hello-world-linux:
+    name: "Hello-World Linux"
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Pre-build Setup
+        uses: ./templates/prebuild/action.yml
+        with:
+          COMPONENT: hello-world
+          VARIANT_TYPE: LINUX
+
+      - name: Build Linux Variant
+        run: npm run build
+        working-directory: ./components/hello-world
+
+      - name: Execute Variant Tests
+        run: npm run test
+        working-directory: ./components/hello-world
+        
+      # This step was added to show the output
+      - name: Execute Variant (Demo Purposes)
+        run: node ./lib/index.js
+        working-directory: ./components/hello-world
+
+      - name: Package Linux Variant      
+        run: npm pack
+        working-directory: ./components/hello-world
+
+      - name: Publish Linux Variant
+        uses: actions/upload-artifact@v3
+        with:
+          name: hello-world-linux
+          path: ./components/hello-world/naveed235812-hello-world-linux-*.tgz
+        if: ${{ github.event_name == 'push' }}
+
+  hello-world-mac:
+    name: "Hello-World Mac"
+    runs-on: macos-latest
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v2.1.1
+
+      - name: 🟢 Install Node
+        uses: actions/setup-node@v4
+        with:
+          always-auth: true
+          node-version: 18
+          scope: '@naveed235812'
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Preprocessor
+        run: npm install -g c-preprocessor
+
+      - name: Prepare and Execute Preprocessor
+        run: |
+          python prepareExecutePreprocessor.py
+        env:
+          COMPONENT: hello-world
+          VARIANT_TYPE: MAC
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./components/hello-world
+
+      - name: Build Mac Variant
+        run: npm run build
+        working-directory: ./components/hello-world
+
+      - name: Execute Variant Tests
+        run: npm run test
+        working-directory: ./components/hello-world
+
+      # This step was added to show the output
+      - name: Execute Variant (Demo Purposes)
+        run: node ./lib/index.js
+        working-directory: ./components/hello-world
+
+      - name: Package Mac Variant       
+        run: npm pack
+        working-directory: ./components/hello-world
+
+      - name: Publish Mac Variant
+        uses: actions/upload-artifact@v3
+        with:
+          name: hello-world-mac
+          path: ./components/hello-world/naveed235812-hello-world-mac-*.tgz
+        if: ${{ github.event_name == 'push' }}
+
+  hello-world-windows:
+    name: "Hello-World Windows"
+    runs-on: windows-latest
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v2.1.1
+
+      - name: 🟢 Install Node
+        uses: actions/setup-node@v4
+        with:
+          always-auth: true
+          node-version: 18
+          scope: '@naveed235812'
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Preprocessor
+        run: npm install -g c-preprocessor
+
+      - name: Prepare and Execute Preprocessor
+        run: |
+          python prepareExecutePreprocessor.py
+        env:
+          COMPONENT: hello-world
+          VARIANT_TYPE: WINDOWS
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./components/hello-world
+
+      - name: Build Windows Variant
+        run: npm run build
+        working-directory: ./components/hello-world
+
+      - name: Execute Variant Tests
+        run: npm run test
+        working-directory: ./components/hello-world
+
+      # This step was added to show the output
+      - name: Execute Variant (Demo Purposes)
+        run: node ./lib/index.js
+        working-directory: ./components/hello-world
+
+      - name: Package Windows Variant      
+        run: npm pack
+        working-directory: ./components/hello-world
+
+      - name: Publish Windows Variant
+        uses: actions/upload-artifact@v3
+        with:
+          name: hello-world-windows
+          path: ./components/hello-world/naveed235812-hello-world-windows-*.tgz
+        if: ${{ github.event_name == 'push' }}
+
+  security-scan:
+    needs:
+      - hello-world-linux
+      - hello-world-mac
+      - hello-world-windows
+    name: "Security Scan"
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v2.1.1
+
+      - name: 🟢 Install Node
+        uses: actions/setup-node@v4
+        with:
+          always-auth: true
+          node-version: 18
+          scope: '@naveed235812'
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Preprocessor
+        run: npm install -g c-preprocessor
+
+      - name: Prepare and Execute Preprocessor
+        run: |
+          python prepareExecutePreprocessor.py
+        env:
+          COMPONENT: hello-world
+          VARIANT_TYPE: LINUX
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./components/hello-world
+
+      - name: Run Audit
+        run: npm audit
+        working-directory: ./components/hello-world
+

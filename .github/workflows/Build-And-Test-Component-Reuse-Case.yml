@@ -20,6 +20,8 @@ jobs:
     name: "Hello-World Linux"
     runs-on: ubuntu-latest
     steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v2.1.1
 
       - name: Pre-build Setup
         uses: ./.github/workflows/templates/prebuild/action.yml

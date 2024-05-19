@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v2.1.1
 
       - name: Pre-build Setup
-        uses: ./templates/prebuild/action.yml
+        uses: ./.github/templates/prebuild
         with:
           COMPONENT: hello-world
           VARIANT_TYPE: LINUX

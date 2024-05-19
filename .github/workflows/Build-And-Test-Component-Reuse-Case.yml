@@ -23,13 +23,13 @@ jobs:
       - name: 📚 Checkout
         uses: actions/checkout@v2.1.1
 
-      - name: Pre-build Setup
+      - name: Initial Setup
         uses: ./.github/templates/prebuild
         with:
           COMPONENT: hello-world
           VARIANT_TYPE: LINUX
 
-      - name: Build and Post Build Tasks
+      - name: Build, Test and Package
         uses: ./.github/templates/build
         with:
           COMPONENT: hello-world
@@ -43,51 +43,18 @@ jobs:
       - name: 📚 Checkout
         uses: actions/checkout@v2.1.1
 
-      - name: 🟢 Install Node
-        uses: actions/setup-node@v4
+      - name: Initial Setup
+        uses: ./.github/templates/prebuild
         with:
-          always-auth: true
-          node-version: 18
-          scope: '@naveed235812'
-          registry-url: https://registry.npmjs.org
-
-      - name: Install Preprocessor
-        run: npm install -g c-preprocessor
-
-      - name: Prepare and Execute Preprocessor
-        run: |
-          python prepareExecutePreprocessor.py
-        env:
           COMPONENT: hello-world
           VARIANT_TYPE: MAC
 
-      - name: Install Dependencies
-        run: npm install
-        working-directory: ./components/hello-world
-
-      - name: Build Mac Variant
-        run: npm run build
-        working-directory: ./components/hello-world
-
-      - name: Execute Variant Tests
-        run: npm run test
-        working-directory: ./components/hello-world
-
-      # This step was added to show the output
-      - name: Execute Variant (Demo Purposes)
-        run: node ./lib/index.js
-        working-directory: ./components/hello-world
-
-      - name: Package Mac Variant       
-        run: npm pack
-        working-directory: ./components/hello-world
-
-      - name: Publish Mac Variant
-        uses: actions/upload-artifact@v3
+      - name: Build, Test and Package
+        uses: ./.github/templates/build
         with:
-          name: hello-world-mac
-          path: ./components/hello-world/naveed235812-hello-world-mac-*.tgz
-        if: ${{ github.event_name == 'push' }}
+          COMPONENT: hello-world
+          VARIANT_TYPE: mac
+          WORKING-DIR: ./components/
 
   hello-world-windows:
     name: "Hello-World Windows"
@@ -96,51 +63,18 @@ jobs:
       - name: 📚 Checkout
         uses: actions/checkout@v2.1.1
 
-      - name: 🟢 Install Node
-        uses: actions/setup-node@v4
+      - name: Initial Setup
+        uses: ./.github/templates/prebuild
         with:
-          always-auth: true
-          node-version: 18
-          scope: '@naveed235812'
-          registry-url: https://registry.npmjs.org
-
-      - name: Install Preprocessor
-        run: npm install -g c-preprocessor
-
-      - name: Prepare and Execute Preprocessor
-        run: |
-          python prepareExecutePreprocessor.py
-        env:
           COMPONENT: hello-world
           VARIANT_TYPE: WINDOWS
 
-      - name: Install Dependencies
-        run: npm install
-        working-directory: ./components/hello-world
-
-      - name: Build Windows Variant
-        run: npm run build
-        working-directory: ./components/hello-world
-
-      - name: Execute Variant Tests
-        run: npm run test
-        working-directory: ./components/hello-world
-
-      # This step was added to show the output
-      - name: Execute Variant (Demo Purposes)
-        run: node ./lib/index.js
-        working-directory: ./components/hello-world
-
-      - name: Package Windows Variant      
-        run: npm pack
-        working-directory: ./components/hello-world
-
-      - name: Publish Windows Variant
-        uses: actions/upload-artifact@v3
+      - name: Build, Test and Package
+        uses: ./.github/templates/build
         with:
-          name: hello-world-windows
-          path: ./components/hello-world/naveed235812-hello-world-windows-*.tgz
-        if: ${{ github.event_name == 'push' }}
+          COMPONENT: hello-world
+          VARIANT_TYPE: windows
+          WORKING-DIR: ./components/
 
   security-scan:
     needs:
@@ -153,29 +87,12 @@ jobs:
       - name: 📚 Checkout
         uses: actions/checkout@v2.1.1
 
-      - name: 🟢 Install Node
-        uses: actions/setup-node@v4
+      - name: Initial Setup
+        uses: ./.github/templates/prebuild
         with:
-          always-auth: true
-          node-version: 18
-          scope: '@naveed235812'
-          registry-url: https://registry.npmjs.org
-
-      - name: Install Preprocessor
-        run: npm install -g c-preprocessor
-
-      - name: Prepare and Execute Preprocessor
-        run: |
-          python prepareExecutePreprocessor.py
-        env:
           COMPONENT: hello-world
           VARIANT_TYPE: LINUX
-
-      - name: Install Dependencies
-        run: npm install
-        working-directory: ./components/hello-world
 
       - name: Run Audit
         run: npm audit
         working-directory: ./components/hello-world
-

@@ -22,6 +22,7 @@ runs:
 
     - name: Install Preprocessor
       run: npm install -g c-preprocessor
+      shell: bash
 
     - name: Prepare and Execute Preprocessor
       run: |
@@ -29,7 +30,9 @@ runs:
       env:
         COMPONENT: ${{inputs.COMPONENT}}
         VARIANT_TYPE: ${{inputs.VARIANT_TYPE}}
+      shell: bash
 
     - name: Install Dependencies
       run: npm install
+      shell: bash
       working-directory: ./components/${{inputs.COMPONENT}}

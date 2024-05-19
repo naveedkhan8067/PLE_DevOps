@@ -1,5 +1,5 @@
 {
-  #include "../../VariantConfig.js"
+  #include "VariantConfig.js"
 #if "VARIANT" == "MAC"
   "name": "@naveed235812/hello-world-mac",
 #elif "VARIANT" == "LINUX"

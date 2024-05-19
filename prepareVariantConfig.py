@@ -2,13 +2,11 @@ import os;
 import sys;
 import shutil
 
+component = os.environ['COMPONENT']
+print("Selected component: " + str(component))
+
 variant = os.environ['VARIANT_TYPE']
 print("Selected variant: " + str(variant))
-
-#temporarily disable
-#component = os.environ['COMPONENT']
-component = "hello-world"
-print("Selected component: " + str(component))
 
 configFile = "" 
 if (variant == "LINUX"):
@@ -19,13 +17,14 @@ else:
   configFile = "Windows_Config.js"
 
 print("-> Current working directory: " + str(os.getcwd()))
-dst = os.path.join(os.getcwd(), "VariantConfig.js")
+src = os.path.join(os.getcwd(), components, component, configs, configFile)
+dst = os.path.join(os.getcwd(), components, component, "VariantConfig.js")
 
 #clean destination file if already exist
 if(os.path.exists(dst)):
   os.remove(dst)
 
-shutil.copyfile(configFile, dst)
+shutil.copyfile(src, dst)
 print("-> Variant config is successfully prepared")
 
 print("-> Executing C-Preprocessor")

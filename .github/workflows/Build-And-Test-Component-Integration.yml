@@ -7,13 +7,13 @@ on:
   #     - main
   #   paths:
   #     - components/hello-world/**
-  #     - .github/workflows/Build-And-Test-Component.yml
+  #     - .github/workflows/Build-And-Test-Component-Integration.yml
   # pull_request:
   #   branches:    
   #     - main
   #   paths:
   #     - components/hello-world/**
-  #     - .github/workflows/Build-And-Test-Component.yml
+  #     - .github/workflows/Build-And-Test-Component-Integration.yml
 
 jobs:  
   component-linux:

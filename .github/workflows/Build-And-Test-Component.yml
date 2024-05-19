@@ -159,3 +159,41 @@ jobs:
           name: hello-world-windows
           path: ./components/hello-world/naveed235812-hello-world-windows-*.tgz
         if: ${{ github.event_name == 'push' }}
+
+  security-scan:
+    needs:
+      - hello-world-linux
+      - hello-world-mac
+      - hello-world-windows
+    name: "Security Scan"
+    runs-on: hello-world-linux
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v2.1.1
+
+      - name: 🟢 Install Node
+        uses: actions/setup-node@v4
+        with:
+          always-auth: true
+          node-version: 18
+          scope: '@naveed235812'
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Preprocessor
+        run: npm install -g c-preprocessor
+
+      - name: Prepare and Execute Preprocessor
+        run: |
+          python prepareExecutePreprocessor.py
+        env:
+          COMPONENT: hello-world
+          VARIANT_TYPE: LINUX
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./components/hello-world
+
+      - name: Run Audit
+        run: npm audit
+        working-directory: ./components/hello-world
+

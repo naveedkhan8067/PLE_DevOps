@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as chalk from "chalk";
-#include "../../../VariantConfig.js"
+#include "../VariantConfig.js"
 
 export function Main (subStr: string): string {
 // command: c-preprocessor Main.ts Main.ts

@@ -41,5 +41,5 @@ if (program.red) {
 // #endif
 //-------------------------------------------------
 
-var str = "Hello-World Component";
+var str = "Hello-World";
 main(str);

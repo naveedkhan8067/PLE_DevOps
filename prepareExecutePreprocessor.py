@@ -50,7 +50,7 @@ def getPathsToProcess(component, componetPath):
 
   #prepare paths in the required format
   for index in range(len(pathsList)):
-    if pathsList[index].startswith("\\"):
+    if pathsList[index].startswith("\\") or pathsList[index].startswith("/"):
       pathsList[index] = pathsList[index][1:]
     pathsList[index] = os.path.join("components", component, pathsList[index]).replace("\\","/")
 

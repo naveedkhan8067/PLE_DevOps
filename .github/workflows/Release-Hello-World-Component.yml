@@ -46,7 +46,7 @@ jobs:
           from glob import glob
 
           filename = glob('naveed235812-hello-world-windows-**.tgz*')
-          print(file)
+          print(filename)
 
           env_file = os.getenv('GITHUB_ENV')
           with open(env_file, "a") as myfile:

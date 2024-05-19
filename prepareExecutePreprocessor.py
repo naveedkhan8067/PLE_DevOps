@@ -40,13 +40,14 @@ def main():
 
 def getPathsToProcess(component, componetPath):
   pathsList = []
-  excludes = ["node_modules", "configs", "lib", "README.md", "VariantConfig.js"]
+  excludesDirs = ["node_modules", "configs", "lib"]
+  excludeFiles = ["README.md", "VariantConfig.js"]
 
   #Get list of paths
   for root, dirs, files in os.walk(componetPath):
-    dirs[:] = [d for d in dirs if d not in excludes]
+    dirs[:] = [d for d in dirs if d not in excludesDirs]
     for fileName in files:
-      pathsList.append( os.path.join( root[len(componetPath):], fileName ))
+      if fileName not in excludeFiles: pathsList.append( os.path.join( root[len(componetPath):], fileName ))
 
   #prepare paths in the required format
   for index in range(len(pathsList)):

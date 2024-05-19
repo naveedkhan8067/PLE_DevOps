@@ -25,25 +25,36 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Display the path
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          echo show directory structure
-          ls -a
-          echo
-          echo show python version
-          python --version
-          echo
-          echo git version
-          git --version
+          import os
+          env_file = os.getenv('GITHUB_ENV')
+          with open(env_file, "a") as myfile:
+            myfile.write("MY_VAR=MY_VALUE")
+        shell: python
 
-      - name: Execute Python File
-        run: |
-          echo Executing Python File
-          python HelloWorld.py
+      - name: Display Variable
+        run: echo ${{ env.MY_VAR }}
+
+      # # Runs a single command using the runners shell
+      # - name: Run a one-line script
+      #   run: echo Hello, world!
+
+      # # Runs a set of commands using the runners shell
+      # - name: Run a multi-line script
+      #   run: |
+      #     echo Add other actions to build,
+      #     echo test, and deploy your project.
+      #     echo show directory structure
+      #     ls -a
+      #     echo
+      #     echo show python version
+      #     python --version
+      #     echo
+      #     echo git version
+      #     git --version
+
+      # - name: Execute Python File
+      #   run: |
+      #     echo Executing Python File
+      #     python HelloWorld.py

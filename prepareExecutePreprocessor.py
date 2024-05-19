@@ -40,7 +40,7 @@ def main():
 
 def getPathsToProcess(component, componetPath):
   pathsList = []
-  excludes = ["node_modules", "configs", "lib", "VariantConfig.js"]
+  excludes = ["node_modules", "configs", "lib", "README.md", "VariantConfig.js"]
 
   #Get list of paths
   for root, dirs, files in os.walk(componetPath):

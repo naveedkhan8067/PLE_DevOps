@@ -17,8 +17,8 @@ else:
   configFile = "Windows_Config.js"
 
 print("-> Current working directory: " + str(os.getcwd()))
-src = os.path.join(os.getcwd(), components, component, configs, configFile)
-dst = os.path.join(os.getcwd(), components, component, "VariantConfig.js")
+src = os.path.join(os.getcwd(), "components", component, "configs", configFile)
+dst = os.path.join(os.getcwd(), "components", component, "VariantConfig.js")
 
 #clean destination file if already exist
 if(os.path.exists(dst)):

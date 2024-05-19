@@ -29,29 +29,12 @@ jobs:
           COMPONENT: hello-world
           VARIANT_TYPE: LINUX
 
-      - name: Build Linux Variant
-        run: npm run build
-        working-directory: ./components/hello-world
-
-      - name: Execute Variant Tests
-        run: npm run test
-        working-directory: ./components/hello-world
-        
-      # This step was added to show the output
-      - name: Execute Variant (Demo Purposes)
-        run: node ./lib/index.js
-        working-directory: ./components/hello-world
-
-      - name: Package Linux Variant      
-        run: npm pack
-        working-directory: ./components/hello-world
-
-      - name: Publish Linux Variant
-        uses: actions/upload-artifact@v3
+      - name: Pre-build Setup
+        uses: ./.github/templates/build
         with:
-          name: hello-world-linux
-          path: ./components/hello-world/naveed235812-hello-world-linux-*.tgz
-        if: ${{ github.event_name == 'push' }}
+          COMPONENT: hello-world
+          VARIANT_TYPE: linux
+          WORKING-DIR: ./components/
 
   hello-world-mac:
     name: "Hello-World Mac"

@@ -166,7 +166,7 @@ jobs:
       - hello-world-mac
       - hello-world-windows
     name: "Security Scan"
-    runs-on: hello-world-linux
+    runs-on: ubuntu-latest
     steps:
       - name: 📚 Checkout
         uses: actions/checkout@v2.1.1

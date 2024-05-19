@@ -37,19 +37,21 @@ jobs:
             let fs = require('fs');
             fs.writeFileSync(`${process.env.GITHUB_WORKSPACE}/hello-world-windows.zip`, Buffer.from(download.data));
 
-      - name: Display Root
-        run: |
-          dir
-
-      - name: 'Unzip artifact'
-        run: unzip
-
       - name: 'Unzip artifact'
         run: unzip hello-world-windows.zip
 
-      - name: Display Root
+      - name: Get Package Filename
         run: |
-          dir
+          import os
+          from glob import glob
+
+          filename = glob('naveed235812-hello-world-windows-**.tgz*')
+          print(file)
+
+          env_file = os.getenv('GITHUB_ENV')
+          with open(env_file, "a") as myfile:
+            myfile.write("PACK_NAME=filename")
+        shell: python
 
       - name: 🟢 Node
         uses: actions/setup-node@v4
@@ -60,6 +62,7 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: 🚀 publish to npm.js
-        run: npm publish --access public
+        run: npm publish --access public ${{ env.PACK_NAME }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+          

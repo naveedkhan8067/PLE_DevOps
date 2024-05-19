@@ -8,12 +8,12 @@ on:
     paths:
       - components/hello-world/**
       - .github/workflows/Build-And-Test-Component.yml
-  # pull_request:
-  #   branches:    
-  #     - main
-  #   paths:
-  #     - components/hello-world/**
-  #     - .github/workflows/Build-And-Test-Component.yml
+  pull_request:
+    branches:    
+      - main
+    paths:
+      - components/hello-world/**
+      - .github/workflows/Build-And-Test-Component.yml
 
 jobs:  
 #   component-linux:
@@ -186,6 +186,7 @@ jobs:
         with:
           name: hello-world-windows
           path: ./components/hello-world/naveed235812-hello-world-windows-*.tgz
+        if: ${{ github.event_name == 'push' }}
 
   # check-compatibility-with-windows-product:
   #   needs:

@@ -67,7 +67,7 @@ jobs:
         with:
           name: hello-world-linux
           path: ./components/hello-world/naveed235812-hello-world-linux-*.tgz
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch'}}
 
   hello-world-mac:
     name: "Hello-World Mac"
@@ -120,7 +120,7 @@ jobs:
         with:
           name: hello-world-mac
           path: ./components/hello-world/naveed235812-hello-world-mac-*.tgz
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
 
   hello-world-windows:
     name: "Hello-World Windows"
@@ -173,7 +173,7 @@ jobs:
         with:
           name: hello-world-windows
           path: ./components/hello-world/naveed235812-hello-world-windows-*.tgz
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
 
   security-scan:
     needs:

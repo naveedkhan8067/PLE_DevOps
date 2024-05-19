@@ -1,0 +1,98 @@
+name: "Build-And-Test-Component-Reuse-Case"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - components/hello-world/**
+      - .github/workflows/Build-And-Test-Component-Reuse-Case.yml
+  pull_request:
+    branches:    
+      - main
+    paths:
+      - components/hello-world/**
+      - .github/workflows/Build-And-Test-Component-Reuse-Case.yml
+
+jobs:  
+  hello-world-linux:
+    name: "Hello-World Linux"
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v2.1.1
+
+      - name: Initial Setup
+        uses: ./.github/templates/prebuild
+        with:
+          COMPONENT: hello-world
+          VARIANT_TYPE: LINUX
+
+      - name: Build, Test and Package
+        uses: ./.github/templates/build
+        with:
+          COMPONENT: hello-world
+          VARIANT_TYPE: linux
+          WORKING-DIR: ./components/
+
+  hello-world-mac:
+    name: "Hello-World Mac"
+    runs-on: macos-latest
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v2.1.1
+
+      - name: Initial Setup
+        uses: ./.github/templates/prebuild
+        with:
+          COMPONENT: hello-world
+          VARIANT_TYPE: MAC
+
+      - name: Build, Test and Package
+        uses: ./.github/templates/build
+        with:
+          COMPONENT: hello-world
+          VARIANT_TYPE: mac
+          WORKING-DIR: ./components/
+
+  hello-world-windows:
+    name: "Hello-World Windows"
+    runs-on: windows-latest
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v2.1.1
+
+      - name: Initial Setup
+        uses: ./.github/templates/prebuild
+        with:
+          COMPONENT: hello-world
+          VARIANT_TYPE: WINDOWS
+
+      - name: Build, Test and Package
+        uses: ./.github/templates/build
+        with:
+          COMPONENT: hello-world
+          VARIANT_TYPE: windows
+          WORKING-DIR: ./components/
+
+  security-scan:
+    needs:
+      - hello-world-linux
+      - hello-world-mac
+      - hello-world-windows
+    name: "Security Scan"
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v2.1.1
+
+      - name: Initial Setup
+        uses: ./.github/templates/prebuild
+        with:
+          COMPONENT: hello-world
+          VARIANT_TYPE: LINUX
+
+      - name: Run Audit
+        run: npm audit
+        working-directory: ./components/hello-world

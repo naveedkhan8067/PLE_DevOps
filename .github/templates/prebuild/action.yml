@@ -1,0 +1,38 @@
+name: "Pre-build Tasks"
+description: "It performs the pre-build tasks for the component."
+
+inputs:
+  COMPONENT:
+    description: "Name of the component"
+    required: true
+  VARIANT_TYPE:
+    description: "Type of the variant"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: 🟢 Install Node
+      uses: actions/setup-node@v4
+      with:
+        always-auth: true
+        node-version: 18
+        scope: '@naveed235812'
+        registry-url: https://registry.npmjs.org
+
+    - name: Install Preprocessor
+      run: npm install -g c-preprocessor
+      shell: bash
+
+    - name: Prepare and Execute Preprocessor
+      run: |
+        python prepareExecutePreprocessor.py
+      env:
+        COMPONENT: ${{inputs.COMPONENT}}
+        VARIANT_TYPE: ${{inputs.VARIANT_TYPE}}
+      shell: bash
+
+    - name: Install Dependencies
+      run: npm install
+      shell: bash
+      working-directory: ./components/${{inputs.COMPONENT}}

@@ -1,0 +1,43 @@
+name: "Build and Post Build Tasks"
+description: "It performs the build and post build tasks for the component."
+
+inputs:
+  COMPONENT:
+    description: "Name of the component"
+    required: true
+  VARIANT_TYPE:
+    description: "Type of the variant"
+    required: true
+  WORKING-DIR:
+    description: "Path where an action should be performed"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build ${{inputs.VARIANT_TYPE}} Variant
+      run: npm run build
+      shell: bash
+      working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
+
+    - name: Execute Variant Tests
+      run: npm run test
+      shell: bash
+      working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
+      
+    # This step was added to show the output
+    - name: Execute Variant (Demo Purposes)
+      run: node ./lib/index.js
+      shell: bash
+      working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
+
+    - name: Package ${{inputs.VARIANT_TYPE}} Variant      
+      run: npm pack
+      shell: bash
+      working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
+
+    - name: Publish ${{inputs.VARIANT_TYPE}} Variant
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{inputs.COMPONENT}}-${{inputs.VARIANT_TYPE}}
+        path: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}/naveed235812-${{inputs.COMPONENT}}-${{inputs.VARIANT_TYPE}}-*.tgz
+      if: ${{ github.event_name == 'push' }}

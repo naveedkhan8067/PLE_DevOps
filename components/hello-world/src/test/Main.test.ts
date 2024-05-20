@@ -1,21 +1,23 @@
-import * as fs from "fs";
-import * as path from "path";
-import { expect } from "chai";
-import * as rimraf from "rimraf";
-import { Main } from "../Main";
 #include "../../VariantConfig.js"
 
+import { expect } from "chai";
+import { CreateMsgString, GetVariantType, DisplayMsg } from "../Main";
+
 describe("Hello-World Component Tests", async () => {
-  it("Get required module type", async () => {
-    var msgStr = "Hello World";
-    const moduleType = Main(msgStr);
+  it("verify variant and message string", async () => {
+    const variantType = GetVariantType();
+    const msgString = CreateMsgString();
 
     #if "VARIANT" == "MAC"
-    expect(moduleType).to.equal("MAC");
+    expect(variantType).to.equal("Mac");
+    expect(msgString).to.equal("*** Mac platform --> Hello-World ***");
     #elif "VARIANT" == "LINUX"
-    expect(moduleType).to.equal("LINUX");
+    expect(variantType).to.equal("Linux");
+    expect(msgString).to.equal("*** Linux platform --> Hello-World ***");
     #else
-    expect(moduleType).to.equal("WINDOWS");
+    expect(variantType).to.equal("Windows");
+    expect(msgString).to.equal("*** Windows platform --> Hello-World ***");
     #endif
+    DisplayMsg(msgString);
   });
   });

@@ -185,6 +185,7 @@ jobs:
       - hello-world-windows
     name: "Security Scan"
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
     steps:
       - name: 📚 Checkout
         uses: actions/checkout@v2.1.1

@@ -1,3 +1,0 @@
-c-preprocessor ./src/Main.ts ./src/Main.ts
-npm run build
-node ./lib/index.js

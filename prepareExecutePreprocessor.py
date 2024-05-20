@@ -56,6 +56,7 @@ def getPathsToProcess(component, componetPath):
     pathsList[index] = os.path.join("components", component, pathsList[index]).replace("\\","/")
 
   return pathsList
-    
+
+# call main
 if __name__=="__main__": 
   main() 

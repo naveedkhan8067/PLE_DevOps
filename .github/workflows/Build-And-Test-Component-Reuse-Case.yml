@@ -17,7 +17,7 @@ on:
 
 jobs:  
   hello-world-linux-reuse:
-    name: "Hello-World Linux"
+    name: "Hello-World Linux Reuse"
     runs-on: ubuntu-latest
     steps:
       - name: 📚 Checkout
@@ -37,7 +37,7 @@ jobs:
           WORKING-DIR: ./components/
 
   hello-world-mac-reuse:
-    name: "Hello-World Mac"
+    name: "Hello-World Mac Reuse"
     runs-on: macos-latest
     steps:
       - name: 📚 Checkout
@@ -57,7 +57,7 @@ jobs:
           WORKING-DIR: ./components/
 
   hello-world-windows-reuse:
-    name: "Hello-World Windows"
+    name: "Hello-World Windows Reuse"
     runs-on: windows-latest
     steps:
       - name: 📚 Checkout
@@ -76,12 +76,12 @@ jobs:
           VARIANT_TYPE: windows
           WORKING-DIR: ./components/
 
-  security-scan:
+  security-scan-reuse:
     needs:
       - hello-world-linux
       - hello-world-mac
       - hello-world-windows
-    name: "Security Scan"
+    name: "Security Scan Reuse"
     runs-on: ubuntu-latest
     steps:
       - name: 📚 Checkout

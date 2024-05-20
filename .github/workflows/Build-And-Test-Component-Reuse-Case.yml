@@ -8,12 +8,12 @@ on:
     paths:
       - components/hello-world/**
       - .github/workflows/Build-And-Test-Component-Reuse-Case.yml
-  pull_request:
-    branches:    
-      - main
-    paths:
-      - components/hello-world/**
-      - .github/workflows/Build-And-Test-Component-Reuse-Case.yml
+  # pull_request:
+  #   branches:    
+  #     - main
+  #   paths:
+  #     - components/hello-world/**
+  #     - .github/workflows/Build-And-Test-Component-Reuse-Case.yml
 
 jobs:  
   hello-world-linux-reuse:

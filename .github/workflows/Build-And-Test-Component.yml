@@ -53,14 +53,15 @@ jobs:
         run: npm run test
         working-directory: ./components/hello-world
         
-      # This step was added to show the output
-      - name: Execute Variant (Demo Purposes)
-        run: node ./lib/index.js
-        working-directory: ./components/hello-world
+      # # This step was added to show the output
+      # - name: Execute Variant (Demo Purposes)
+      #   run: node ./lib/index.js
+      #   working-directory: ./components/hello-world
 
       - name: Package Linux Variant      
         run: npm pack
         working-directory: ./components/hello-world
+        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
 
       - name: Publish Linux Variant
         uses: actions/upload-artifact@v3
@@ -106,14 +107,15 @@ jobs:
         run: npm run test
         working-directory: ./components/hello-world
 
-      # This step was added to show the output
-      - name: Execute Variant (Demo Purposes)
-        run: node ./lib/index.js
-        working-directory: ./components/hello-world
+      # # This step was added to show the output
+      # - name: Execute Variant (Demo Purposes)
+      #   run: node ./lib/index.js
+      #   working-directory: ./components/hello-world
 
       - name: Package Mac Variant       
         run: npm pack
         working-directory: ./components/hello-world
+        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
 
       - name: Publish Mac Variant
         uses: actions/upload-artifact@v3
@@ -159,14 +161,15 @@ jobs:
         run: npm run test
         working-directory: ./components/hello-world
 
-      # This step was added to show the output
-      - name: Execute Variant (Demo Purposes)
-        run: node ./lib/index.js
-        working-directory: ./components/hello-world
+      # # This step was added to show the output
+      # - name: Execute Variant (Demo Purposes)
+      #   run: node ./lib/index.js
+      #   working-directory: ./components/hello-world
 
       - name: Package Windows Variant      
         run: npm pack
         working-directory: ./components/hello-world
+        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
 
       - name: Publish Windows Variant
         uses: actions/upload-artifact@v3
@@ -182,6 +185,7 @@ jobs:
       - hello-world-windows
     name: "Security Scan"
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
     steps:
       - name: 📚 Checkout
         uses: actions/checkout@v2.1.1

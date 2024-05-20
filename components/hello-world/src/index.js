@@ -9,5 +9,8 @@ function main() {
   displayMsg(msg);
 }
 
+/*
+  Calling Main
+*/
 main();
 

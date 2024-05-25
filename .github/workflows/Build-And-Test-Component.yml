@@ -102,11 +102,6 @@ jobs:
         run: npm run test
         working-directory: ./components/hello-world
 
-      # # This step was added to show the output
-      # - name: Execute Variant (Demo Purposes)
-      #   run: node ./lib/index.js
-      #   working-directory: ./components/hello-world
-
       - name: Package Mac Variant       
         run: npm pack
         working-directory: ./components/hello-world
@@ -155,11 +150,6 @@ jobs:
       - name: Execute Variant Tests
         run: npm run test
         working-directory: ./components/hello-world
-
-      # # This step was added to show the output
-      # - name: Execute Variant (Demo Purposes)
-      #   run: node ./lib/index.js
-      #   working-directory: ./components/hello-world
 
       - name: Package Windows Variant      
         run: npm pack

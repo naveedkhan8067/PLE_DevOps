@@ -6,9 +6,9 @@ This component displays a platform-specific hello world message.
 
 1. Navigate to `./components/hello-world/` through Command Line
 2. Do installations using the following command:
-  ```
+   ```
    npm install
-  ```
+   ```
 3. Now build the code with the following command:
    ```
    npm run build

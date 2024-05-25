@@ -6,7 +6,7 @@ This repository is used for domain engineer assets and workflows.
 
 [Node.js](https://nodejs.org/en): It requires node.js version 18.x.
 
-[Git](https://git-scm.com/): Git should be installed on the machine.
+[Git](https://git-scm.com/): It should be installed on the machine.
 
 ## Local Build Guidelines
 

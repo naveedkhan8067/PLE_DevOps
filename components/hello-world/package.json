@@ -14,7 +14,7 @@
     "hello-world": "./lib/index.js"
   },
   "author": "Naveed Ahmad",
-  "license": "ISC",
+  "license": "",
   "repository": {
     "type": "git",
     "url": "https://github.com/naveedkhan8067/PLE_DevOps"

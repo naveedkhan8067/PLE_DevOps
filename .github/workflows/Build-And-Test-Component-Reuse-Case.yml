@@ -16,7 +16,7 @@ on:
   #     - .github/workflows/Build-And-Test-Component-Reuse-Case.yml
 
 jobs:  
-  hello-world-linux-reuse:
+  hello-world-linux:
     name: "Hello-World Linux Reuse"
     runs-on: ubuntu-latest
     steps:
@@ -36,7 +36,7 @@ jobs:
           VARIANT_TYPE: linux
           WORKING-DIR: ./components/
 
-  hello-world-mac-reuse:
+  hello-world-mac:
     name: "Hello-World Mac Reuse"
     runs-on: macos-latest
     steps:
@@ -56,7 +56,7 @@ jobs:
           VARIANT_TYPE: mac
           WORKING-DIR: ./components/
 
-  hello-world-windows-reuse:
+  hello-world-windows:
     name: "Hello-World Windows Reuse"
     runs-on: windows-latest
     steps:
@@ -76,7 +76,7 @@ jobs:
           VARIANT_TYPE: windows
           WORKING-DIR: ./components/
 
-  security-scan-reuse:
+  security-scan:
     needs:
       - hello-world-linux-reuse
       - hello-world-mac-reuse

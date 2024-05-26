@@ -23,12 +23,6 @@ runs:
       run: npm run test
       shell: bash
       working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
-      
-    # # This step was added to show the output
-    # - name: Execute Variant (Demo Purposes)
-    #   run: node ./lib/index.js
-    #   shell: bash
-    #   working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
 
     - name: Package ${{inputs.VARIANT_TYPE}} Variant      
       run: npm pack

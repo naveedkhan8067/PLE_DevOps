@@ -9,6 +9,7 @@ inputs:
     description: "Type of the variant"
     required: true
   WORKING-DIR:
+    default: "components/${{inputs.COMPONENT}}"
     description: "Path where an action should be performed"
 
 runs:
@@ -17,28 +18,28 @@ runs:
     - name: Build ${{inputs.VARIANT_TYPE}} Variant
       run: npm run build
       shell: bash
-      working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
+      working-directory: ${{inputs.WORKING-DIR}}
 
     - name: Execute Variant Tests
       run: npm run test
       shell: bash
-      working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
+      working-directory: ${{inputs.WORKING-DIR}}
       
     # # This step was added to show the output
     # - name: Execute Variant (Demo Purposes)
     #   run: node ./lib/index.js
     #   shell: bash
-    #   working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
+    #   working-directory: ${{inputs.WORKING-DIR}}
 
     - name: Package ${{inputs.VARIANT_TYPE}} Variant      
       run: npm pack
       shell: bash
-      working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
+      working-directory: ${{inputs.WORKING-DIR}}
       if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch'}}
 
     - name: Publish ${{inputs.VARIANT_TYPE}} Variant
       uses: actions/upload-artifact@v3
       with:
         name: ${{inputs.COMPONENT}}-${{inputs.VARIANT_TYPE}}
-        path: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}/naveed235812-${{inputs.COMPONENT}}-${{inputs.VARIANT_TYPE}}-*.tgz
+        path: ${{inputs.WORKING-DIR}}/naveed235812-${{inputs.COMPONENT}}-${{inputs.VARIANT_TYPE}}-*.tgz
       if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch'}}

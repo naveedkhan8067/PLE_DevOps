@@ -17,6 +17,11 @@ def main():
   src = os.path.normpath(os.path.join(os.getcwd(), configPath, configFile))
   dst = os.path.join(componentPath, "VariantConfig.js")
 
+  #verify the existence of variant config file
+  if(not os.path.exists(src)):
+    print("Config file not found: " + src)
+    sys.exit(1)
+
   #clean destination file if already exist
   if(os.path.exists(dst)):
     os.remove(dst)
@@ -62,9 +67,10 @@ def getConfigInfo(component, variant):
       configFile = component["configFile"]
       configPath = component["configPath"]
       break
-    else:
+
+  if not (configFile) or not (configPath):
       print("Variant information not found in VariantsInfo.json.")
-      sys.exit(1)
+      sys.exit(1)      
 
   return configFile, configPath
 

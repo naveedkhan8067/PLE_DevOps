@@ -1,0 +1,19 @@
+{
+  "hello-world": [
+    {
+      "variant": "LINUX",
+      "configFile": "LinuxConfig.js",
+      "configPath": "components/hello-world/configs"
+    },
+    {
+      "variant": "MAC",
+      "configFile": "MacConfig.js",
+      "configPath": "components/hello-world/configs"
+    },
+    {
+      "variant": "WINDOWS",
+      "configFile": "WindowsConfig.js",
+      "configPath": "components/hello-world/configs"
+    }
+  ]
+}

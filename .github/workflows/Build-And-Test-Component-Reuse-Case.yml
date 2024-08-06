@@ -20,7 +20,7 @@ jobs:
     name: "Hello-World Linux Reuse"
     runs-on: ubuntu-latest
     steps:
-      - name: 📚 Checkout
+      - name: 📚 Get Repository
         uses: actions/checkout@v2.1.1
 
       - name: Initial Setup
@@ -40,7 +40,7 @@ jobs:
     name: "Hello-World Mac Reuse"
     runs-on: macos-latest
     steps:
-      - name: 📚 Checkout
+      - name: 📚 Get Repository
         uses: actions/checkout@v2.1.1
 
       - name: Initial Setup
@@ -60,7 +60,7 @@ jobs:
     name: "Hello-World Windows Reuse"
     runs-on: windows-latest
     steps:
-      - name: 📚 Checkout
+      - name: 📚 Get Repository
         uses: actions/checkout@v2.1.1
 
       - name: Initial Setup
@@ -84,7 +84,7 @@ jobs:
     name: "Security Scan Reuse"
     runs-on: ubuntu-latest
     steps:
-      - name: 📚 Checkout
+      - name: 📚 Get Repository
         uses: actions/checkout@v2.1.1
 
       - name: Initial Setup
@@ -93,6 +93,6 @@ jobs:
           COMPONENT: hello-world
           VARIANT_TYPE: LINUX
 
-      - name: Run Audit
+      - name: Execute Audit
         run: npm audit
         working-directory: ./components/hello-world

@@ -1,6 +1,3 @@
-# dependencies
+output
 node_modules
 package-lock.json
-
-# build output
-lib

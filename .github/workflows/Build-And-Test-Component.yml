@@ -20,10 +20,10 @@ jobs:
     name: "Hello-World Linux"
     runs-on: ubuntu-latest
     steps:
-      - name: 📚 Checkout
+      - name: 📚 Get Repository
         uses: actions/checkout@v2.1.1
 
-      - name: 🟢 Install Node
+      - name: 🟢 Install Node.js 18
         uses: actions/setup-node@v4
         with:
           always-auth: true
@@ -41,29 +41,29 @@ jobs:
           COMPONENT: hello-world
           VARIANT_TYPE: LINUX
 
-      - name: Install Dependencies
+      - name: Install Hello-World Dependencies
         run: npm install
         working-directory: ./components/hello-world
 
-      - name: Build Linux Variant
+      - name: Build Hello-World Linux Variant
         run: npm run build
         working-directory: ./components/hello-world
 
-      - name: Execute Variant Tests
+      - name: Execute Hello-World Variant Tests
         run: npm run test
         working-directory: ./components/hello-world
         
       # # This step was added to show the output
       # - name: Execute Variant (Demo Purposes)
-      #   run: node ./lib/index.js
+      #   run: node ./output/Variant.js
       #   working-directory: ./components/hello-world
 
-      - name: Package Linux Variant      
+      - name: Package Hello-World Linux Variant      
         run: npm pack
         working-directory: ./components/hello-world
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
 
-      - name: Publish Linux Variant
+      - name: Publish Hello-World Linux Variant
         uses: actions/upload-artifact@v3
         with:
           name: hello-world-linux
@@ -74,10 +74,10 @@ jobs:
     name: "Hello-World Mac"
     runs-on: macos-latest
     steps:
-      - name: 📚 Checkout
+      - name: 📚 Get Repository
         uses: actions/checkout@v2.1.1
 
-      - name: 🟢 Install Node
+      - name: 🟢 Install Node.js 18
         uses: actions/setup-node@v4
         with:
           always-auth: true
@@ -95,29 +95,29 @@ jobs:
           COMPONENT: hello-world
           VARIANT_TYPE: MAC
 
-      - name: Install Dependencies
+      - name: Install Hello-World Dependencies
         run: npm install
         working-directory: ./components/hello-world
 
-      - name: Build Mac Variant
+      - name: Build Hello-World Mac Variant
         run: npm run build
         working-directory: ./components/hello-world
 
-      - name: Execute Variant Tests
+      - name: Execute Hello-World Variant Tests
         run: npm run test
         working-directory: ./components/hello-world
 
       # # This step was added to show the output
       # - name: Execute Variant (Demo Purposes)
-      #   run: node ./lib/index.js
+      #   run: node ./output/Variant.js
       #   working-directory: ./components/hello-world
 
-      - name: Package Mac Variant       
+      - name: Package Hello-World Mac Variant       
         run: npm pack
         working-directory: ./components/hello-world
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
 
-      - name: Publish Mac Variant
+      - name: Publish Hello-World Mac Variant
         uses: actions/upload-artifact@v3
         with:
           name: hello-world-mac
@@ -128,10 +128,10 @@ jobs:
     name: "Hello-World Windows"
     runs-on: windows-latest
     steps:
-      - name: 📚 Checkout
+      - name: 📚 Get Repository
         uses: actions/checkout@v2.1.1
 
-      - name: 🟢 Install Node
+      - name: 🟢 Install Node.js 18
         uses: actions/setup-node@v4
         with:
           always-auth: true
@@ -149,29 +149,29 @@ jobs:
           COMPONENT: hello-world
           VARIANT_TYPE: WINDOWS
 
-      - name: Install Dependencies
+      - name: Install Hello-World Dependencies
         run: npm install
         working-directory: ./components/hello-world
 
-      - name: Build Windows Variant
+      - name: Build Hello-World Windows Variant
         run: npm run build
         working-directory: ./components/hello-world
 
-      - name: Execute Variant Tests
+      - name: Execute Hello-World Variant Tests
         run: npm run test
         working-directory: ./components/hello-world
 
       # # This step was added to show the output
       # - name: Execute Variant (Demo Purposes)
-      #   run: node ./lib/index.js
+      #   run: node ./output/Variant.js
       #   working-directory: ./components/hello-world
 
-      - name: Package Windows Variant      
+      - name: Package Hello-World Windows Variant      
         run: npm pack
         working-directory: ./components/hello-world
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
 
-      - name: Publish Windows Variant
+      - name: Publish Hello-World Windows Variant
         uses: actions/upload-artifact@v3
         with:
           name: hello-world-windows
@@ -187,10 +187,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
-      - name: 📚 Checkout
+      - name: 📚 Get Repository
         uses: actions/checkout@v2.1.1
 
-      - name: 🟢 Install Node
+      - name: 🟢 Install Node.js 18
         uses: actions/setup-node@v4
         with:
           always-auth: true
@@ -208,11 +208,11 @@ jobs:
           COMPONENT: hello-world
           VARIANT_TYPE: LINUX
 
-      - name: Install Dependencies
+      - name: Install Hello-World Dependencies
         run: npm install
         working-directory: ./components/hello-world
 
-      - name: Run Audit
+      - name: Execute Audit
         run: npm audit
         working-directory: ./components/hello-world
 

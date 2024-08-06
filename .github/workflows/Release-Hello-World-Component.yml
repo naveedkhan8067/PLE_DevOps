@@ -16,39 +16,30 @@ jobs:
 
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: 'Download artifact'
+      - name: 'Download Hello-World Artifacts'
         uses: actions/github-script@v6
         with:
           script: |
-            let packs = ["hello-world-windows", "hello-world-linux", "hello-world-mac"];
-            let artifactsObj = await github.rest.actions.listWorkflowRunArtifacts({
-               owner: context.repo.owner,
-               repo: context.repo.repo,
-               run_id: context.payload.workflow_run.id,
-            });
-            for (var item of packs) {
+            const fs = require('fs');
+            const packs = ["hello-world-windows", "hello-world-linux", "hello-world-mac"];
+            const downloadPath = `${process.env.GITHUB_WORKSPACE}/`;
+            const obj = await github.rest.actions.listWorkflowRunArtifacts({repo: context.repo.repo, owner: context.repo.owner, run_id: context.payload.workflow_run.id});
+            for (var item of packs) 
+            {
               console.log(item);
-              let requiredArtifact = artifactsObj.data.artifacts.filter((artifact) => {
-                return artifact.name == item
-              })[0];
-              let download = await github.rest.actions.downloadArtifact({
-                 owner: context.repo.owner,
-                 repo: context.repo.repo,
-                 artifact_id: requiredArtifact.id,
-                 archive_format: 'zip',
-              });
-              let fs = require('fs');
-              let workspace = `${process.env.GITHUB_WORKSPACE}/`;
-              fs.writeFileSync(workspace+item+'.zip', Buffer.from(download.data));
+              const requiredPack = obj.data.artifacts.filter((pack) => { return pack.name == item})[0];
+              const getArtifacts = await github.rest.actions.downloadArtifact({ archive_format: 'zip', repo: context.repo.repo, artifact_id: requiredPack.id, owner: context.repo.owner }); 
+              const filePath = downloadPath + item + '.zip';
+              fs.writeFileSync(filePath, Buffer.from(getArtifacts.data));
             };
 
-      - name: 'Unzip Artifacts'
+      - name: 'Unzip Hello-World Artifacts'
         run: |
           unzip hello-world-windows.zip
           unzip hello-world-mac.zip
           unzip hello-world-linux.zip
 
-      - name: 🟢 Node
+      - name: 🟢 Install Node.js 18
         uses: actions/setup-node@v4
         with:
           always-auth: true
@@ -56,7 +47,7 @@ jobs:
           scope: '@naveed235812'
           registry-url: https://registry.npmjs.org
 
-      - name: Publish Artifacts
+      - name: Release Hello-World Variants
         run: |
           import os
           from glob import glob

@@ -40,7 +40,7 @@ def main():
 
 def getPathsToProcess(component, componentPath):
   pathsList = []
-  excludesDirs = ["node_modules", "configs", "lib"]
+  excludesDirs = ["node_modules", "configs", "output"]
   excludeFiles = ["README.md", "VariantConfig.js"]
 
   #Get list of paths

@@ -4,30 +4,16 @@
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": false,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "incremental": true,
-    "inlineSources": true,
     "jsx": "react",
     "module": "commonjs",
     "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": false,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "stripInternal": false,
     "target": "ES2019",
     "noImplicitAny": false,
-    "outDir": "./lib",
+    "outDir": "./output",
   },
   "include": [
-    "src/*.ts",
-    "src/test/*.ts"
+    "src/*.ts"
   ]
 }

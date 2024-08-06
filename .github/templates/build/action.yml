@@ -14,29 +14,29 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Build ${{inputs.VARIANT_TYPE}} Variant
+    - name: Build ${{inputs.COMPONENT}} ${{inputs.VARIANT_TYPE}} Variant
       run: npm run build
       shell: bash
       working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
 
-    - name: Execute Variant Tests
+    - name: Execute ${{inputs.COMPONENT}} Variant Tests
       run: npm run test
       shell: bash
       working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
       
     # # This step was added to show the output
     # - name: Execute Variant (Demo Purposes)
-    #   run: node ./lib/index.js
+    #   run: node ./output/Variant.js
     #   shell: bash
     #   working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
 
-    - name: Package ${{inputs.VARIANT_TYPE}} Variant      
+    - name: Package ${{inputs.COMPONENT}} ${{inputs.VARIANT_TYPE}} Variant      
       run: npm pack
       shell: bash
       working-directory: ${{inputs.WORKING-DIR}}/${{inputs.COMPONENT}}
       if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch'}}
 
-    - name: Publish ${{inputs.VARIANT_TYPE}} Variant
+    - name: Publish ${{inputs.COMPONENT}} ${{inputs.VARIANT_TYPE}} Variant
       uses: actions/upload-artifact@v3
       with:
         name: ${{inputs.COMPONENT}}-${{inputs.VARIANT_TYPE}}

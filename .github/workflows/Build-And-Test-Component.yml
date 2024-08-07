@@ -52,11 +52,6 @@ jobs:
       - name: Execute Hello-World Variant Tests
         run: npm run test
         working-directory: ./components/hello-world
-        
-      # # This step was added to show the output
-      # - name: Execute Variant (Demo Purposes)
-      #   run: node ./output/Variant.js
-      #   working-directory: ./components/hello-world
 
       - name: Package Hello-World Linux Variant      
         run: npm pack
@@ -107,11 +102,6 @@ jobs:
         run: npm run test
         working-directory: ./components/hello-world
 
-      # # This step was added to show the output
-      # - name: Execute Variant (Demo Purposes)
-      #   run: node ./output/Variant.js
-      #   working-directory: ./components/hello-world
-
       - name: Package Hello-World Mac Variant       
         run: npm pack
         working-directory: ./components/hello-world
@@ -160,11 +150,6 @@ jobs:
       - name: Execute Hello-World Variant Tests
         run: npm run test
         working-directory: ./components/hello-world
-
-      # # This step was added to show the output
-      # - name: Execute Variant (Demo Purposes)
-      #   run: node ./output/Variant.js
-      #   working-directory: ./components/hello-world
 
       - name: Package Hello-World Windows Variant      
         run: npm pack

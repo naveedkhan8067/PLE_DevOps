@@ -8,7 +8,7 @@
   "name": "@naveed235812/hello-world-windows",
   #endif
   "version": "1.0.8",
-  "description": "This component display variant type based hello-world message on screen.",
+  "description": "This component display variant type based hello-world message on screen.", 
   "main": "Variant.js",
   "bin": {
     "hello-world": "./output/Variant.js"

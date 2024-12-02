@@ -21,7 +21,7 @@ export function GetVariantType (): string {
 */
 export function CreateMsgString (): string {
   const variant = GetVariantType();
-  const msgString = "*** " + variant + " platform --> Hello-World ***"
+  const msgString = "*** " + variant + " platform --> Hello-World Naveed***"
   return msgString;
 }
 
